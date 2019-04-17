@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'MustacheUIKit_Example' do
+  pod 'MustacheUIKit', :path => '../'
+
+  target 'MustacheUIKit_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
