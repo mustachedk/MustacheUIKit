@@ -2,7 +2,6 @@
   "name": "MustacheUIKit",
   "version": "0.1.0",
   "summary": "Helper methods used at Mustache when creating new apps.",
-  "description": "Helper methods used at Mustache when creating new apps.",
   "homepage": "https://github.com/mustachedk/MustacheUIKit",
   "license": {
     "type": "MIT",

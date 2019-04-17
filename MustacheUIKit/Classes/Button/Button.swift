@@ -1,15 +1,4 @@
-//
-//  Button.swift
-//  MustacheUIKit
-//
-//  Created by Tommy Hinrichsen on 16/04/2019.
-//
-
-import Foundation
 import UIKit
-//import SnapKit
-//import RxSwift
-//import RxCocoa
 
 @IBDesignable
 open class Button: UIButton {
