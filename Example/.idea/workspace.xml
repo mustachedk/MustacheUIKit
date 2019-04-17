@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="91691085-4fa2-401c-9680-00aaf00aed8c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../MustacheUIKit/Extensions/NSAttributedString+Extensions.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../MustacheUIKit/Extensions/String+Extensions.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MustacheUIKit/Extensions/CLLocationCoordinate2D+Extensions.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MustacheUIKit/Extensions/MKMapView+Extensions.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Podfile" beforeDir="false" afterPath="$PROJECT_DIR$/Podfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" afterDir="false" />
     </list>
     <ignored path="$USER_HOME$/Library/Caches/AppCode2019.1/DerivedData/MustacheUIKit-bkxuucjacldbaqcqgueyxshrpycm/Build/Intermediates.noindex/" />
@@ -21,8 +20,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../MustacheUIKit.podspec">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" selection-start-line="17" selection-end-line="17" />
+            <state>
+              <caret selection-end-line="17" />
             </state>
           </provider>
         </entry>
@@ -36,11 +35,35 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../MustacheUIKit/Extensions/CLLocationCoordinate2D+Extensions.swift">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" selection-start-line="4" selection-end-line="4" />
+              <folding>
+                <element signature="e#163#180#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../MustacheUIKit/Extensions/MKMapView+Extensions.swift">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="595">
+              <caret line="35" column="13" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
+              <folding>
+                <element signature="e#150#167#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../MustacheUIKit/Extensions/String+Extensions.swift">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="4" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
+            <state relative-caret-position="238">
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
               <folding>
                 <element signature="e#53#70#0" expanded="true" />
               </folding>
@@ -99,6 +122,9 @@
         <option value="$PROJECT_DIR$/../MustacheUIKit/Classes/Textfield/ValidatingTextField.swift" />
         <option value="$PROJECT_DIR$/../MustacheUIKit/Extensions/NSAttributedString+Extensions.swift" />
         <option value="$PROJECT_DIR$/../MustacheUIKit/Extensions/String+Extensions.swift" />
+        <option value="$PROJECT_DIR$/../MustacheUIKit/Classes/CoordinatorType.swift" />
+        <option value="$PROJECT_DIR$/../MustacheUIKit/Extensions/CLLocationCoordinate2D+Extensions.swift" />
+        <option value="$PROJECT_DIR$/../MustacheUIKit/Extensions/MKMapView+Extensions.swift" />
       </list>
     </option>
   </component>
@@ -145,7 +171,30 @@
               <item name="Pods" type="1d218c8b:XcodeProjectNode" />
               <item name="Development Pods" type="fcab9f18:XcodeViewNode" />
               <item name="MustacheUIKit" type="fcab9f18:XcodeViewNode" />
+              <item name="Classes" type="fcab9f18:XcodeViewNode" />
+            </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="Pods" type="1d218c8b:XcodeProjectNode" />
+              <item name="Development Pods" type="fcab9f18:XcodeViewNode" />
+              <item name="MustacheUIKit" type="fcab9f18:XcodeViewNode" />
               <item name="Extensions" type="fcab9f18:XcodeViewNode" />
+            </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="Pods" type="1d218c8b:XcodeProjectNode" />
+              <item name="Development Pods" type="fcab9f18:XcodeViewNode" />
+              <item name="MustacheUIKit" type="fcab9f18:XcodeViewNode" />
+              <item name="Extensions" type="fcab9f18:XcodeViewNode" />
+              <item name="CoreLocation" type="fcab9f18:XcodeViewNode" />
+            </path>
+            <path>
+              <item name="" type="efc3779f:XcodeRootNode" />
+              <item name="Pods" type="1d218c8b:XcodeProjectNode" />
+              <item name="Development Pods" type="fcab9f18:XcodeViewNode" />
+              <item name="MustacheUIKit" type="fcab9f18:XcodeViewNode" />
+              <item name="Extensions" type="fcab9f18:XcodeViewNode" />
+              <item name="MapKit" type="fcab9f18:XcodeViewNode" />
             </path>
           </expand>
           <select />
@@ -193,7 +242,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10830000" />
+    <option name="totallyTimeSpent" value="12129000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="2560" height="1363" extended-state="6" />
@@ -227,20 +276,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$APPLICATION_HOME_DIR$/Resources/module_cache_10E125.zip!/5.0/x86_64/iphonesimulator12.2/UIKit.UIColor/UIKit.UIColor.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="543">
-          <caret line="51" column="23" selection-start-line="51" selection-start-column="19" selection-end-line="51" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/Resources/module_cache_10E125.zip!/5.0/x86_64/iphonesimulator12.2/UIKit.UITableView/UIKit.UITableView.swift">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="176" column="4" selection-start-line="176" selection-start-column="4" selection-end-line="176" selection-end-column="119" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../Extensions/CGFloat+Extensions.swift" />
     <entry file="file://$PROJECT_DIR$/../Extensions/NSLayoutConstraint+Extension.swift" />
     <entry file="file://$PROJECT_DIR$/../Extensions/UIBarButtonItem+Extensions.swift" />
@@ -413,8 +448,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../MustacheUIKit.podspec">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        <state>
+          <caret selection-end-line="17" />
         </state>
       </provider>
     </entry>
@@ -427,10 +462,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../MustacheUIKit/Extensions/String+Extensions.swift">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="4" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
+        <state relative-caret-position="238">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
           <folding>
             <element signature="e#53#70#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../MustacheUIKit/Extensions/CLLocationCoordinate2D+Extensions.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+          <folding>
+            <element signature="e#163#180#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../MustacheUIKit/Extensions/MKMapView+Extensions.swift">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="35" column="13" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
+          <folding>
+            <element signature="e#150#167#0" expanded="true" />
           </folding>
         </state>
       </provider>
