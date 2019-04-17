@@ -1,0 +1,6 @@
+framework module MustacheUIKit {
+  umbrella header "MustacheUIKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

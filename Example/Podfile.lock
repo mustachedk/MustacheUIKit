@@ -1,0 +1,16 @@
+PODS:
+  - MustacheUIKit (0.1.0)
+
+DEPENDENCIES:
+  - MustacheUIKit (from `../`)
+
+EXTERNAL SOURCES:
+  MustacheUIKit:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  MustacheUIKit: 5a73ca1d43682e62109576bb5cfba88a56438dcc
+
+PODFILE CHECKSUM: 6d2b0f538dfcbc22719946b8e911aa325b39a18b
+
+COCOAPODS: 1.6.1
