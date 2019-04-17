@@ -42,6 +42,8 @@
 		BAE5A2F464871C57D849B213821646EC /* MustacheUIKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 81265C9FF4E8193E6F1D2396B967747F /* MustacheUIKit-dummy.m */; };
 		BB51CA198E2A6A4C75040D68F2C28EDE /* ExpandingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F28B6E8CD4681F49738BAB613DCCFF /* ExpandingCollectionView.swift */; };
 		CDDD333430B82BD81F5D21F5047AF8DE /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96789D9ED73D711CF6056D08F72434EC /* TabBarController.swift */; };
+		D31C52FA50D0802F8ADC3E96 /* NSAttributedString+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31C54840C80153440D104A9 /* NSAttributedString+Extensions.swift */; };
+		D31C5F29C0D1313DBC0D5782 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31C5168E470F7209965670B /* String+Extensions.swift */; };
 		D695A20CA5120077004894A9134E800E /* UIBarButtonItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C6A4695A3495D2D78A8D01045A942E /* UIBarButtonItem+Extensions.swift */; };
 		D9DFAB59355EC6D12D329926661E00AB /* ImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263A6C1155FE9E8383DB0D15DFF0BA2D /* ImageButton.swift */; };
 		E15C85A4B6E2D1A2F2EABA9F2CDA9839 /* MustacheUIKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 85AEDDD3DD2750906FF2D26776C426D9 /* MustacheUIKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -134,6 +136,8 @@
 		BDDEA86E2A41A082086FC7F1A0F0B512 /* Pods-MustacheUIKit_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-MustacheUIKit_Example.modulemap"; sourceTree = "<group>"; };
 		C2FC7522DEDA880548893FD257B8C2CA /* Pods_MustacheUIKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_MustacheUIKit_Tests.framework; path = "Pods-MustacheUIKit_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6B3262D884C06091B8F035CD9498A01 /* Pods-MustacheUIKit_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MustacheUIKit_Example-umbrella.h"; sourceTree = "<group>"; };
+		D31C5168E470F7209965670B /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		D31C54840C80153440D104A9 /* NSAttributedString+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Extensions.swift"; sourceTree = "<group>"; };
 		DBE94FF92AB1DAF9C90E96CF1D93B2DC /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
 		DCF7E40A83B1B0BCA0A9A366B416796E /* UIWindow+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIWindow+Extensions.swift"; sourceTree = "<group>"; };
 		DE15392BB31D95886410EEF22A8AC89F /* Pods-MustacheUIKit_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MustacheUIKit_Example-Info.plist"; sourceTree = "<group>"; };
@@ -304,6 +308,8 @@
 				6F5B7E74C7BC98AB18D365D42A84EE5B /* UIView+Extensions.swift */,
 				A0DF3979D67C7C85840341533570B1B8 /* UIViewController+Extensions.swift */,
 				DCF7E40A83B1B0BCA0A9A366B416796E /* UIWindow+Extensions.swift */,
+				D31C54840C80153440D104A9 /* NSAttributedString+Extensions.swift */,
+				D31C5168E470F7209965670B /* String+Extensions.swift */,
 			);
 			name = Extensions;
 			path = MustacheUIKit/Extensions;
@@ -627,6 +633,8 @@
 				066212B9A679EBEABD85617961F7BF42 /* UIWindow+Extensions.swift in Sources */,
 				417629A1CBD601A535B6DA984C18C827 /* ValidatingTextField.swift in Sources */,
 				1583F254A392A4898C7B0F0A9D2A5783 /* View.swift in Sources */,
+				D31C52FA50D0802F8ADC3E96 /* NSAttributedString+Extensions.swift in Sources */,
+				D31C5F29C0D1313DBC0D5782 /* String+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
