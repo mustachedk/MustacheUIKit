@@ -28,12 +28,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		19739E8AB781787A8F48CCA1 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		19739E8AB781787A8F48CCA1 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		2FEEF8D48EC43F803F4D9CAB /* Pods-MustacheUIKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MustacheUIKit_Tests.release.xcconfig"; path = "Target Support Files/Pods-MustacheUIKit_Tests/Pods-MustacheUIKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		4E96A02D13FA8EDF677C827C /* Pods_MustacheUIKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MustacheUIKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		58C0E647F3D69606C43931BB /* Pods-MustacheUIKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MustacheUIKit_Example.debug.xcconfig"; path = "Target Support Files/Pods-MustacheUIKit_Example/Pods-MustacheUIKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		5A72CCB8A9E9161F8D8A2D4C /* MustacheUIKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = MustacheUIKit.podspec; path = ../MustacheUIKit.podspec; sourceTree = "<group>"; };
-		5F442BED47DA46CD14137090 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		5A72CCB8A9E9161F8D8A2D4C /* MustacheUIKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = MustacheUIKit.podspec; path = ../MustacheUIKit.podspec; sourceTree = "<group>"; };
+		5F442BED47DA46CD14137090 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* MustacheUIKit_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MustacheUIKit_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -77,7 +77,6 @@
 				88ED66D4A9A12585D6443A47 /* Pods-MustacheUIKit_Tests.debug.xcconfig */,
 				2FEEF8D48EC43F803F4D9CAB /* Pods-MustacheUIKit_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -227,6 +226,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -423,7 +423,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -469,7 +469,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
