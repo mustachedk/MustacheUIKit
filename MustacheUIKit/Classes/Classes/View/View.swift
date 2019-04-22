@@ -6,9 +6,15 @@ open class View: UIView {
     // ----------------------------- Color -----------------------------//
 
     @IBInspectable
-    open var borderColor: UIColor {
-        set { self.layer.borderColor = newValue.cgColor }
-        get { return UIColor(cgColor: self.layer.borderColor ?? UIColor.clear.cgColor) }
+    public var borderWidth: CGFloat {
+        get { return self.layer.borderWidth }
+        set { self.layer.borderWidth = newValue }
+    }
+
+    @IBInspectable
+    public var borderColor: UIColor? {
+        get { return UIColor(cgColor: self.layer.borderColor!) }
+        set { self.layer.borderColor = newValue?.cgColor }
     }
 
     // ----------------------------- Rounded -----------------------------//

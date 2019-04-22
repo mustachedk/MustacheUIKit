@@ -26,6 +26,18 @@ open class Button: UIButton {
         }
     }
 
+    @IBInspectable
+    public var borderWidth: CGFloat {
+        get { return self.layer.borderWidth }
+        set { self.layer.borderWidth = newValue }
+    }
+
+    @IBInspectable
+    public var borderColor: UIColor? {
+        get { return UIColor(cgColor: self.layer.borderColor!) }
+        set { self.layer.borderColor = newValue?.cgColor }
+    }
+
     //----------------------------------- UIActivityIndicator -----------------------------------//
 
     fileprivate var activityIndicator = UIActivityIndicatorView(style: .white)
@@ -282,4 +294,3 @@ open class Button: UIButton {
 //        }
 //    }
 //}
-
