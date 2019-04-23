@@ -67,6 +67,7 @@ open class TextField: UITextField {
 
         let spacer2 = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let placeholder = UIBarButtonItem(title: self.placeholder, style: .done, target: self, action: nil)
+        placeholder.isEnabled = false
         let spacer3 = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
 
         self.doneButton = UIBarButtonItem(title: NSLocalizedString(doneText, comment: ""), style: .done, target: self, action: #selector(handleDone))
