@@ -23,7 +23,7 @@ open class View: UIView {
     open var cornerRadius: CGFloat {
         set {
             self.layer.cornerRadius = newValue
-            self.layer.masksToBounds = newValue > 0
+            self.layer.masksToBounds = newValue > 0 && !self.hasShadow
         }
         get { return self.layer.cornerRadius }
     }
