@@ -93,6 +93,9 @@ open class View: UIView {
     @IBInspectable
     open var hasShadow: Bool = false
 
+    @IBInspectable
+    open var shadowOffset: CGSize = CGSize(width: 0.0, height: 4.0)
+
     fileprivate func configureShadow() {
 
         if !self.hasShadow { return }
@@ -100,11 +103,12 @@ open class View: UIView {
         self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.layer.cornerRadius).cgPath
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOpacity = 0.2
-        self.layer.shadowOffset = CGSize(width: 0.0, height: 4.0)
+        self.layer.shadowOffset = self.shadowOffset
         self.layer.shadowRadius = 4
         self.layer.masksToBounds = false
 
     }
+
 
     // --------------------------- UITapGestureRecognizer -------------------------------//
 
