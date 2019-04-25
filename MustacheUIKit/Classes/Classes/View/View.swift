@@ -94,6 +94,9 @@ open class View: UIView {
     open var hasShadow: Bool = false
 
     @IBInspectable
+    open var shadowOpacity: Float = 0.2
+
+    @IBInspectable
     open var shadowOffset: CGSize = CGSize(width: 0.0, height: 4.0)
 
     fileprivate func configureShadow() {
