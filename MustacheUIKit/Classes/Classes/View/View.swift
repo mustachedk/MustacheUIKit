@@ -21,20 +21,12 @@ open class View: UIView {
 
     @IBInspectable
     open var cornerRadius: CGFloat {
-        set {
-            self.layer.cornerRadius = newValue
-            self.layer.masksToBounds = newValue > 0 && !self.hasShadow
-        }
+        set { self.layer.cornerRadius = newValue }
         get { return self.layer.cornerRadius }
     }
 
     fileprivate func configureRadius() {
-
-        let radius = self.cornerRadius > 0 ? self.cornerRadius : 0
-
-        self.layer.cornerRadius = radius
-
-        if !self.hasShadow { self.layer.masksToBounds = true }
+        self.clipsToBounds = self.layer.cornerRadius > 0
     }
 
     @available(iOS 11.0, *)
@@ -101,24 +93,16 @@ open class View: UIView {
     @IBInspectable
     open var hasShadow: Bool = false
 
-    fileprivate var shadowLayer = CAShapeLayer()
-
     fileprivate func configureShadow() {
 
         if !self.hasShadow { return }
 
-        let radius = self.cornerRadius > 0 ? self.cornerRadius : 0
-
-        self.shadowLayer.fillColor = self.backgroundColor?.cgColor
-        self.shadowLayer.shadowColor = UIColor.black.cgColor
-        self.shadowLayer.shadowOffset = CGSize(width: 0.0, height: 4.0)
-        self.shadowLayer.shadowOpacity = 0.2
-        self.shadowLayer.shadowRadius = 4
-
-        self.layer.insertSublayer(shadowLayer, at: 0)
-
-        self.shadowLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: radius).cgPath
-        self.shadowLayer.shadowPath = shadowLayer.path
+        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.layer.cornerRadius).cgPath
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOpacity = 0.2
+        self.layer.shadowOffset = CGSize(width: 0.0, height: 4.0)
+        self.layer.shadowRadius = 4
+        self.layer.masksToBounds = false
 
     }
 
