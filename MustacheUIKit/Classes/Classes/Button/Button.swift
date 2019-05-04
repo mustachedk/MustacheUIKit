@@ -14,18 +14,6 @@ open class Button: UIButton {
         }
     }
 
-    override open var isHighlighted: Bool {
-        didSet {
-            if self.hasShadow {
-                if isHighlighted {
-                    self.shadowLayer.fillColor = self.backgroundColor?.withAlphaComponent(0.7).cgColor
-                } else {
-                    self.shadowLayer.fillColor = (self.backgroundColor?.cgColor) ?? UIColor.clear.cgColor
-                }
-            }
-        }
-    }
-
     @IBInspectable
     public var borderWidth: CGFloat {
         get { return self.layer.borderWidth }
@@ -117,21 +105,14 @@ open class Button: UIButton {
     // ----------------------------- Rounded -----------------------------//
 
     @IBInspectable
-    public var cornerRadius: CGFloat {
-        set {
-            self.layer.cornerRadius = newValue
-            self.layer.masksToBounds = newValue > 0
-        }
+    open var cornerRadius: CGFloat {
+        set { self.layer.cornerRadius = newValue }
         get { return self.layer.cornerRadius }
     }
 
     fileprivate func configureRadius() {
 
-        let radius = self.cornerRadius > 0 ? self.cornerRadius : 0
-
-        self.layer.cornerRadius = radius
-
-        if !self.hasShadow { self.layer.masksToBounds = true }
+        self.clipsToBounds = self.layer.cornerRadius > 0
     }
 
     @available(iOS 11.0, *)
@@ -198,24 +179,22 @@ open class Button: UIButton {
     @IBInspectable
     public var hasShadow: Bool = false
 
-    fileprivate var shadowLayer = CAShapeLayer()
+    @IBInspectable
+    open var shadowOpacity: Float = 0.2
+
+    @IBInspectable
+    open var shadowOffset: CGSize = CGSize(width: 0.0, height: 4.0)
 
     fileprivate func configureShadow() {
 
         if !self.hasShadow { return }
 
-        let radius = self.cornerRadius > 0 ? self.cornerRadius : 0
-
-        self.shadowLayer.fillColor = self.backgroundColor?.cgColor
-        self.shadowLayer.shadowColor = UIColor.black.cgColor
-        self.shadowLayer.shadowOffset = CGSize(width: 0.0, height: 4.0)
-        self.shadowLayer.shadowOpacity = 0.2
-        self.shadowLayer.shadowRadius = 4
-
-        self.layer.insertSublayer(shadowLayer, at: 0)
-
-        self.shadowLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: radius).cgPath
-        self.shadowLayer.shadowPath = shadowLayer.path
+        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.layer.cornerRadius).cgPath
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOpacity = 0.2
+        self.layer.shadowOffset = self.shadowOffset
+        self.layer.shadowRadius = 4
+        self.layer.masksToBounds = false
 
     }
 
@@ -286,11 +265,4 @@ open class Button: UIButton {
     }
 }
 
-//extension Reactive where Base: Button {
-//    /// Bindable sink for `hidden` property.
-//    public var isBusy: Binder<Bool> {
-//        return Binder(self.base) { view, busy in
-//            view.isBusy = busy
-//        }
-//    }
-//}
+

@@ -1,5 +1,4 @@
 import UIKit
-
 //Xib
 public extension UIView {
 
@@ -166,6 +165,11 @@ public extension UIView {
 
     */
     func shake(completion: ((Bool) -> Void)? = nil) {
+
+        let generator = UINotificationFeedbackGenerator()
+        generator.prepare()
+        generator.notificationOccurred(.warning)
+
         self.transform = CGAffineTransform(translationX: 20, y: 0)
         UIView.animate(withDuration: 0.4,
                        delay: 0,
