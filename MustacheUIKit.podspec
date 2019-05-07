@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'MustacheUIKit'
-  s.version          = '0.1.7'
+  s.version          = '0.1.8'
   s.summary          = 'Helper methods used at Mustache when creating new apps.'
   s.homepage         = 'https://github.com/mustachedk/MustacheUIKit'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
@@ -13,5 +13,7 @@ Pod::Spec.new do |s|
   s.source_files = 'MustacheUIKit/Classes/**/*', 'MustacheUIKit/Extensions/**/*'
 
   s.frameworks = 'UIKit'
+
+  s.ios.resource_bundle = { 'MustacheUIKit' => 'MustacheUIKit/Assets/*.xcassets' }
 
 end

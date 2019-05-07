@@ -43,6 +43,7 @@ open class Button: UIButton {
         didSet {
             self.isUserInteractionEnabled = !isBusy
             self.imageView?.isHidden = self.isBusy
+            self.activityIndicator.tintColor = self.titleLabel?.textColor ?? .black
             self.isBusy ? self.activityIndicator.startAnimating() : self.activityIndicator.stopAnimating()
             if self.isBusy {
                 self.normalTitle = self.title(for: .normal)
@@ -214,23 +215,23 @@ open class Button: UIButton {
 
     public func setFont(_ font: UIFont?, for state: UIControl.State) {
         switch state {
-        case .normal:self.normalFont = font
-        case .highlighted: self.highlightedFont = font
-        case .disabled: self.disabledFont = font
-        case .selected: self.selectedFont = font
-        default:
-            break
+            case .normal:self.normalFont = font
+            case .highlighted: self.highlightedFont = font
+            case .disabled: self.disabledFont = font
+            case .selected: self.selectedFont = font
+            default:
+                break
         }
     }
 
     fileprivate func configureFont() {
         switch self.state {
-        case .normal: self.titleLabel?.font = self.normalFont ?? self.titleLabel?.font
-        case .highlighted: self.titleLabel?.font = self.highlightedFont ?? self.titleLabel?.font
-        case .disabled: self.titleLabel?.font = self.disabledFont ?? self.titleLabel?.font
-        case .selected: self.titleLabel?.font = self.selectedFont ?? self.titleLabel?.font
-        default:
-            break
+            case .normal: self.titleLabel?.font = self.normalFont ?? self.titleLabel?.font
+            case .highlighted: self.titleLabel?.font = self.highlightedFont ?? self.titleLabel?.font
+            case .disabled: self.titleLabel?.font = self.disabledFont ?? self.titleLabel?.font
+            case .selected: self.titleLabel?.font = self.selectedFont ?? self.titleLabel?.font
+            default:
+                break
         }
     }
 
