@@ -60,6 +60,10 @@ open class Button: UIButton {
         }
     }
 
+    fileprivate func configureBusy(){
+        self.activityIndicator.color = self.titleLabel?.textColor
+    }
+
     //----------------------------------- DidTapButton -----------------------------------//
 
     public typealias DidTapButton = (Button) -> Void
@@ -263,7 +267,6 @@ open class Button: UIButton {
         self.configureFont()
         self.configureRadius()
         self.configureShadow()
+        self.configureBusy()
     }
 }
-
-
