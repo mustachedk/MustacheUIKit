@@ -26,7 +26,7 @@ open class View: UIView {
     }
 
     fileprivate func configureRadius() {
-        self.clipsToBounds = self.layer.cornerRadius > 0
+       // self.clipsToBounds = self.layer.cornerRadius > 0
     }
 
     @available(iOS 11.0, *)
@@ -94,21 +94,38 @@ open class View: UIView {
     open var hasShadow: Bool = false
 
     @IBInspectable
-    open var shadowOpacity: Float = 0.2
+    open var sketchColor: UIColor = .black
 
     @IBInspectable
-    open var shadowOffset: CGSize = CGSize(width: 0.0, height: 4.0)
+    open var sketchAlpha: Float = 0.5
+
+    @IBInspectable
+    open var sketchX: CGFloat = 0
+
+    @IBInspectable
+    open var sketchY: CGFloat = 0
+
+    @IBInspectable
+    open var sketchBlur: CGFloat = 0
+
+    @IBInspectable
+    open var sketchSpread: CGFloat = 0
 
     fileprivate func configureShadow() {
 
         if !self.hasShadow { return }
 
-        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.layer.cornerRadius).cgPath
-        self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowOpacity = 0.2
-        self.layer.shadowOffset = self.shadowOffset
-        self.layer.shadowRadius = 4
-        self.layer.masksToBounds = false
+        self.layer.shadowColor = self.sketchColor.cgColor
+        self.layer.shadowOpacity = self.sketchAlpha
+        self.layer.shadowOffset = CGSize(width: self.sketchX, height: self.sketchY)
+        self.layer.shadowRadius = self.sketchBlur / 2.0
+        if self.sketchSpread == 0 {
+            self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.layer.cornerRadius).cgPath
+        } else {
+            let dx = -self.sketchSpread
+            let rect = bounds.insetBy(dx: dx, dy: dx)
+            self.layer.shadowPath = UIBezierPath(roundedRect: rect, cornerRadius: self.layer.cornerRadius).cgPath
+        }
 
     }
 
