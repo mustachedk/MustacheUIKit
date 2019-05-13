@@ -26,66 +26,36 @@ open class View: UIView {
     }
 
     fileprivate func configureRadius() {
-       // self.clipsToBounds = self.layer.cornerRadius > 0
+        // self.clipsToBounds = self.layer.cornerRadius > 0
+    }
+    
+    @IBInspectable
+    open var cornerUL: Bool = false { //UpperLeft
+        didSet { self.updateCorners() }
     }
 
-    @available(iOS 11.0, *)
     @IBInspectable
-    open var cornerUL: Bool { //UpperLeft
-        set {
-            var corners: CACornerMask = CACornerMask(rawValue: 0)
-            if newValue { corners = .layerMinXMinYCorner }
-
-            if self.layer.maskedCorners.contains(.layerMaxXMinYCorner) { corners.insert(.layerMaxXMinYCorner) }
-            if self.layer.maskedCorners.contains(.layerMinXMaxYCorner) { corners.insert(.layerMinXMaxYCorner) }
-            if self.layer.maskedCorners.contains(.layerMaxXMaxYCorner) { corners.insert(.layerMaxXMaxYCorner) }
-            self.layer.maskedCorners = corners
-        }
-        get { return self.layer.maskedCorners.contains(.layerMinXMinYCorner) }
+    open var cornerUR: Bool = false { //UpperRight
+        didSet { self.updateCorners() }
     }
 
-    @available(iOS 11.0, *)
     @IBInspectable
-    open var cornerUR: Bool { //UpperRight
-        set {
-            var corners: CACornerMask = CACornerMask(rawValue: 0)
-            if newValue { corners = .layerMaxXMinYCorner }
-            if self.layer.maskedCorners.contains(.layerMinXMinYCorner) { corners.insert(.layerMinXMinYCorner) }
-
-            if self.layer.maskedCorners.contains(.layerMinXMaxYCorner) { corners.insert(.layerMinXMaxYCorner) }
-            if self.layer.maskedCorners.contains(.layerMaxXMaxYCorner) { corners.insert(.layerMaxXMaxYCorner) }
-            self.layer.maskedCorners = corners
-        }
-        get { return self.layer.maskedCorners.contains(.layerMaxXMinYCorner) }
+    open var cornerLL: Bool = false { //LowerLeft
+        didSet { self.updateCorners() }
     }
 
-    @available(iOS 11.0, *)
     @IBInspectable
-    open var cornerLL: Bool { //LowerLeft
-        set {
-            var corners: CACornerMask = CACornerMask(rawValue: 0)
-            if newValue { corners = .layerMinXMaxYCorner }
-            if self.layer.maskedCorners.contains(.layerMinXMinYCorner) { corners.insert(.layerMinXMinYCorner) }
-            if self.layer.maskedCorners.contains(.layerMaxXMinYCorner) { corners.insert(.layerMaxXMinYCorner) }
-
-            if self.layer.maskedCorners.contains(.layerMaxXMaxYCorner) { corners.insert(.layerMaxXMaxYCorner) }
-            self.layer.maskedCorners = corners
-        }
-        get { return self.layer.maskedCorners.contains(.layerMinXMaxYCorner) }
+    open var cornerLR: Bool = false { //LowerRight
+        didSet { self.updateCorners() }
     }
 
-    @available(iOS 11.0, *)
-    @IBInspectable
-    open var cornerLR: Bool { //LowerRight
-        set {
-            var corners: CACornerMask = CACornerMask(rawValue: 0)
-            if newValue { corners = .layerMaxXMaxYCorner }
-            if self.layer.maskedCorners.contains(.layerMinXMinYCorner) { corners.insert(.layerMinXMinYCorner) }
-            if self.layer.maskedCorners.contains(.layerMaxXMinYCorner) { corners.insert(.layerMaxXMinYCorner) }
-            if self.layer.maskedCorners.contains(.layerMinXMaxYCorner) { corners.insert(.layerMinXMaxYCorner) }
-            self.layer.maskedCorners = corners
-        }
-        get { return self.layer.maskedCorners.contains(.layerMaxXMaxYCorner) }
+    fileprivate func updateCorners() {
+        var corners: CACornerMask = CACornerMask(rawValue: 0)
+        if self.cornerUL { corners.insert(.layerMinXMinYCorner) }
+        if self.cornerUR { corners.insert(.layerMaxXMinYCorner) }
+        if self.cornerLL { corners.insert(.layerMinXMaxYCorner) }
+        if self.cornerLR { corners.insert(.layerMaxXMaxYCorner) }
+        self.layer.maskedCorners = corners
     }
 
     // ----------------------------- Shadow -----------------------------//
