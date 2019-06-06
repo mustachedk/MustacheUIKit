@@ -60,7 +60,18 @@ open class Button: UIButton {
         }
     }
 
-    fileprivate func configureBusy(){
+    open override func setTitle(_ title: String?, for state: State) {
+        super.setTitle(title, for: state)
+        switch state {
+            case .normal: self.normalTitle = title
+            case .highlighted: self.highlightedTitle = title
+            case .disabled: self.disabledTitle = title
+            case .selected: self.selectedTitle = title
+            default:break
+        }
+    }
+
+    fileprivate func configureBusy() {
         self.activityIndicator.color = self.titleLabel?.textColor
     }
 
