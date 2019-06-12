@@ -220,3 +220,15 @@ public extension UIView {
     }
 
 }
+
+//Image
+public extension UIView {
+
+    func snapshot() -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(self.bounds.size, true, UIScreen.main.scale)
+        self.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
+    }
+}
