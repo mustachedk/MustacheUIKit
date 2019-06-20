@@ -50,7 +50,7 @@ open class Button: UIButton {
                 self.highlightedTitle = self.title(for: .highlighted)
                 self.disabledTitle = self.title(for: .disabled)
                 self.selectedTitle = self.title(for: .selected)
-                self.setTitle("", for: UIControl.State())
+                super.setTitle("", for: UIControl.State())
             } else {
                 self.setTitle(self.normalTitle, for: .normal)
                 self.setTitle(self.highlightedTitle, for: .highlighted)
