@@ -3,7 +3,7 @@ import UIKit
 
 public class SnappingCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
-    override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
+    override public func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
 
         // Page width used for estimating and calculating paging.
         let pageWidth: CGFloat = self.itemSize.width + self.minimumLineSpacing
