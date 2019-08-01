@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class SnappingCollectionViewFlowLayout: UICollectionViewFlowLayout {
+public class SnappingCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
     override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
 
