@@ -127,8 +127,7 @@ open class Button: UIButton {
     }
 
     fileprivate func configureRadius() {
-
-        self.clipsToBounds = self.layer.cornerRadius > 0
+        //self.clipsToBounds = self.layer.cornerRadius > 0
     }
 
     @available(iOS 11.0, *)
