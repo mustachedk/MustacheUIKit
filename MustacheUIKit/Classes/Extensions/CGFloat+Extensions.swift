@@ -19,3 +19,10 @@ public extension CGFloat {
         return self * 180.0 / .pi
     }
 }
+
+public extension String {
+
+    /// Convenience CGFloat value
+    var cgfloat: CGFloat { return CGFloat(Double(self)!) }
+
+}
