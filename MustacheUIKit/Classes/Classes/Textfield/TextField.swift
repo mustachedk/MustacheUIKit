@@ -114,7 +114,7 @@ open class TextField: UITextField {
             self.nextSibling?.toolbarLoading = newValue
             self.previousSibling?.toolbarLoading = newValue
         }
-        get { return self.loadingIndicator.isAnimating ?? false }
+        get { return self.loadingIndicator.isAnimating }
     }
 
     fileprivate func toolbarStartLoading() {

@@ -1,3 +1,6 @@
+source 'https://github.com/mustachedk/MustachePodSpec.git'
+source 'https://github.com/cocoapods/specs.git'
+
 
 platform :ios, '11.0'
 

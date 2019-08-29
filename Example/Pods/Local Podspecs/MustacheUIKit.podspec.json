@@ -1,6 +1,6 @@
 {
   "name": "MustacheUIKit",
-  "version": "0.1.0",
+  "version": "0.2.2",
   "summary": "Helper methods used at Mustache when creating new apps.",
   "homepage": "https://github.com/mustachedk/MustacheUIKit",
   "license": {
@@ -12,9 +12,9 @@
   },
   "source": {
     "git": "https://github.com/mustachedk/MustacheUIKit.git",
-    "tag": "0.1.0"
+    "tag": "0.2.2"
   },
-  "swift_version": "5.0",
+  "swift_versions": "5.0",
   "platforms": {
     "ios": "11.0"
   },
@@ -22,5 +22,19 @@
     "MustacheUIKit/Classes/**/*",
     "MustacheUIKit/Extensions/**/*"
   ],
-  "frameworks": "UIKit"
+  "frameworks": "UIKit",
+  "ios": {
+    "resource_bundles": {
+      "MustacheUIKit": "MustacheUIKit/Assets/*.xcassets"
+    }
+  },
+  "dependencies": {
+    "MustacheFoundation": [
+
+    ],
+    "Kingfisher": [
+
+    ]
+  },
+  "swift_version": "5.0"
 }

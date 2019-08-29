@@ -93,3 +93,168 @@ public extension UIImage {
         return image!
     }
 }
+
+public extension UIImage {
+
+    // colorize image with given tint color
+    // this is similar to Photoshop's "Color" layer blend mode
+    // this is perfect for non-greyscale source images, and images that have both highlights and shadows that should be preserved
+    // white will stay white and black will stay black as the lightness of the image is preserved
+    func tint(tintColor: UIColor) -> UIImage {
+
+        return modifiedImage { context, rect in
+            // draw black background - workaround to preserve color of partially transparent pixels
+            context.setBlendMode(.normal)
+            UIColor.black.setFill()
+            context.fill(rect)
+
+            // draw original image
+            context.setBlendMode(.normal)
+            context.draw(self.cgImage!, in: rect)
+
+            // tint image (loosing alpha) - the luminosity of the original image is preserved
+            context.setBlendMode(.color)
+            tintColor.setFill()
+            context.fill(rect)
+
+            // mask by alpha values of original image
+            context.setBlendMode(.destinationIn)
+            context.draw(self.cgImage!, in: rect)
+        }
+    }
+
+    // fills the alpha channel of the source image with the given color
+    // any color information except to the alpha channel will be ignored
+    func fillAlpha(fillColor: UIColor) -> UIImage {
+
+        return modifiedImage { context, rect in
+            // draw tint color
+            context.setBlendMode(.normal)
+            fillColor.setFill()
+            context.fill(rect)
+            //            context.fillCGContextFillRect(context, rect)
+
+            // mask by alpha values of original image
+            context.setBlendMode(.destinationIn)
+            context.draw(self.cgImage!, in: rect)
+        }
+    }
+
+    private func modifiedImage(draw: (CGContext, CGRect) -> Void) -> UIImage {
+
+        // using scale correctly preserves retina images
+        UIGraphicsBeginImageContextWithOptions(size, false, scale)
+        let context: CGContext! = UIGraphicsGetCurrentContext()
+        assert(context != nil)
+
+        // correctly rotate image
+        context.translateBy(x: 0, y: size.height)
+        context.scaleBy(x: 1.0, y: -1.0)
+
+        let rect = CGRect(x: 0.0, y: 0.0, width: size.width, height: size.height)
+
+        draw(context, rect)
+
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image!
+    }
+
+}
+
+/* Extension for croping transparent pixels
+   example:
+   let image: UIImage = UIImage(imageLiteral: "YOUR_IMAGE")
+   let uiImageView = UIImageView(image: image.cropImageByAlpha())
+   view.addSubview(uiImageView)
+
+   Code was basically done here:
+   http://stackoverflow.com/questions/9061800/how-do-i-autocrop-a-uiimage/13922413#13922413
+   http://www.markj.net/iphone-uiimage-pixel-color/
+ */
+public extension UIImage {
+
+    func cropImageByAlpha() -> UIImage {
+        guard let cgImage = self.cgImage else { return self }
+        guard let context = createARGBBitmapContextFromImage(inImage: cgImage) else { return self }
+        let height = cgImage.height
+        let width = cgImage.width
+        var rect: CGRect = CGRect(x: 0, y: 0, width: CGFloat(width), height: CGFloat(height))
+        context.draw(cgImage, in: rect)
+
+        guard let data = context.data?.assumingMemoryBound(to: UInt8.self) else { return self }
+
+        var minX = width
+        var minY = height
+        var maxX: Int = 0
+        var maxY: Int = 0
+        //Filter through data and look for non-transparent pixels.
+        for y in 0..<height {
+            for x in 0..<width {
+                let pixelIndex = (width * y + x) * 4 /* 4 for A, R, G, B */
+                if data[Int(pixelIndex)] != 0 { //Alpha value is not zero pixel is not transparent.
+                    if (x < minX) {
+                        minX = x
+                    }
+                    if (x > maxX) {
+                        maxX = x
+                    }
+                    if (y < minY) {
+                        minY = y
+                    }
+                    if (y > maxY) {
+                        maxY = y
+                    }
+                }
+            }
+        }
+        rect = CGRect(x: CGFloat(minX), y: CGFloat(minY), width: CGFloat(maxX - minX), height: CGFloat(maxY - minY))
+        let imageScale: CGFloat = self.scale
+        guard let cgiImage = cgImage.cropping(to: rect) else { return self }
+        return UIImage(cgImage: cgiImage, scale: imageScale, orientation: self.imageOrientation)
+    }
+
+    private func createARGBBitmapContextFromImage(inImage: CGImage) -> CGContext? {
+        let width = inImage.width
+        let height = inImage.height
+        let bitmapBytesPerRow = width * 4
+        let bitmapByteCount = bitmapBytesPerRow * height
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        let bitmapData = malloc(bitmapByteCount)
+        if bitmapData == nil {
+            return nil
+        }
+        let context = CGContext(data: bitmapData, width: width, height: height, bitsPerComponent: 8, bytesPerRow: bitmapBytesPerRow, space: colorSpace, bitmapInfo: CGImageAlphaInfo.premultipliedFirst.rawValue)
+        return context
+    }
+}
+
+public extension UIImage {
+
+    func withGradient(locations: [CGFloat], colors: [CGColor]) -> UIImage {
+
+        UIGraphicsBeginImageContext(self.size)
+
+        let context = UIGraphicsGetCurrentContext()
+
+        self.draw(at: CGPoint(x: 0, y: 0))
+
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        let locations: [CGFloat] = locations
+
+        let colors = colors as CFArray
+
+        let gradient = CGGradient(colorsSpace: colorSpace, colors: colors, locations: locations)
+
+        let startPoint = CGPoint(x: self.size.width / 2, y: 0)
+        let endPoint = CGPoint(x: self.size.width / 2, y: self.size.height)
+
+        context!.drawLinearGradient(gradient!, start: startPoint, end: endPoint, options: CGGradientDrawingOptions(rawValue: UInt32(0)))
+
+        guard let image = UIGraphicsGetImageFromCurrentImageContext() else { return self }
+
+        UIGraphicsEndImageContext()
+
+        return image
+    }
+}

@@ -41,7 +41,7 @@ public class Arrow: UIView {
     }
 
     public static func degreesToRadians(_ degrees: CGFloat) -> CGFloat {
-        return degrees * CGFloat(M_PI) / 180
+        return degrees * CGFloat(Double.pi) / 180
     }
 
     override public func draw(_ rect: CGRect) {

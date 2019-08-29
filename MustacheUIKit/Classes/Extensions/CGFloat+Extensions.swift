@@ -11,4 +11,11 @@ public extension CGFloat {
     /// Convenience Float value
     var float: Float { return Float(self) }
 
+    func toRadians() -> CGFloat {
+        return self * .pi / 180.0
+    }
+
+    func toDegrees() -> CGFloat {
+        return self * 180.0 / .pi
+    }
 }

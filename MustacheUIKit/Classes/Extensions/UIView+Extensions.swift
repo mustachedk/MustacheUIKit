@@ -232,3 +232,68 @@ public extension UIView {
         return image
     }
 }
+
+
+public extension UIView {
+
+    func slideMask(to direction: UIRectEdge = .right, hide: Bool, duration: TimeInterval = 0.3) {
+
+        guard [UIRectEdge.left, UIRectEdge.right].contains(direction), duration > 0 else { return }
+
+        if hide {
+            let maskLayer = CAShapeLayer()
+            maskLayer.backgroundColor = UIColor.black.cgColor
+            maskLayer.path = UIBezierPath(rect: self.bounds).cgPath
+
+            self.layer.mask = maskLayer
+
+            let animation = CABasicAnimation(keyPath: "path")
+            animation.fromValue = maskLayer.path
+            if direction == .right {
+                animation.toValue = UIBezierPath(rect: self.bounds.offsetBy(dx: self.bounds.width, dy: 0)).cgPath
+            } else if direction == .left {
+                animation.toValue = UIBezierPath(rect: self.bounds.offsetBy(dx: -self.bounds.width, dy: 0)).cgPath
+            }
+            animation.duration = duration
+            animation.delegate = self
+            animation.setValue(hide, forKey: "hide")
+
+            maskLayer.add(animation, forKey: nil)
+
+        } else {
+
+            let maskLayer = CAShapeLayer()
+            maskLayer.backgroundColor = UIColor.black.cgColor
+
+            if direction == .right {
+                maskLayer.path = UIBezierPath(rect: self.bounds.offsetBy(dx: -self.bounds.width, dy: 0)).cgPath
+            } else if direction == .left {
+                maskLayer.path = UIBezierPath(rect: self.bounds.offsetBy(dx: self.bounds.width, dy: 0)).cgPath
+            }
+
+            self.layer.mask = maskLayer
+            self.alpha = 1
+
+            let animation = CABasicAnimation(keyPath: "path")
+            animation.fromValue = maskLayer.path
+            animation.toValue = UIBezierPath(rect: self.bounds).cgPath
+            animation.duration = duration
+            animation.delegate = self
+            animation.setValue(hide, forKey: "hide")
+            maskLayer.add(animation, forKey: nil)
+
+        }
+
+    }
+
+}
+
+extension UIView: CAAnimationDelegate {
+    public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        guard let animation = anim as? CABasicAnimation, let hide = animation.value(forKey: "hide") as? Bool else { return }
+
+        if hide { self.alpha = 0 }
+        self.layer.mask = nil
+
+    }
+}
