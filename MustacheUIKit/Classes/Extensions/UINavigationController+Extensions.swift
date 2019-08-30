@@ -1,6 +1,6 @@
 import UIKit
 
-extension UINavigationController {
+public extension UINavigationController {
 
     var topNavigationController: UINavigationController {
         if let presentedViewController = self.presentedViewController as? UINavigationController {

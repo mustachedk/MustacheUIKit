@@ -2,45 +2,45 @@
 import Foundation
 import UIKit
 
-class GradientImageView: UIImageView {
+public class GradientImageView: UIImageView {
 
     fileprivate var gradientMask: CAGradientLayer!
 
-    var colors: [UIColor] = [UIColor.clear, UIColor.black, UIColor.black, UIColor.clear] {
+    public var colors: [UIColor] = [UIColor.clear, UIColor.black, UIColor.black, UIColor.clear] {
         didSet { self.configure() }
     }
 
-    var locations: [Double] = [0.0, 0.15, 0.85, 1.0] {
+    public var locations: [Double] = [0.0, 0.15, 0.85, 1.0] {
         didSet { self.configure() }
     }
 
-    var startPoint = CGPoint(x: 0.5, y: 0) {
+    public var startPoint = CGPoint(x: 0.5, y: 0) {
         didSet { self.configure() }
     }
 
-    var endPoint = CGPoint(x: 0.5, y: 1) {
+    public var endPoint = CGPoint(x: 0.5, y: 1) {
         didSet { self.configure() }
     }
 
-    override var bounds: CGRect {
+    override open var bounds: CGRect {
         didSet { self.gradientMask.frame = self.bounds }
     }
 
-    override var frame: CGRect {
+    override open var frame: CGRect {
         didSet { self.gradientMask.frame = self.bounds }
     }
 
-    override init(image: UIImage?) {
+    override public init(image: UIImage?) {
         super.init(image: image)
         self.configure()
     }
 
-    override init(image: UIImage?, highlightedImage: UIImage?) {
+    override public init(image: UIImage?, highlightedImage: UIImage?) {
         super.init(image: image, highlightedImage: highlightedImage)
         self.configure()
     }
 
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         self.configure()
     }
@@ -62,7 +62,7 @@ class GradientImageView: UIImageView {
         self.setNeedsLayout()
     }
 
-    override func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews()
         self.gradientMask.frame = self.bounds
     }
