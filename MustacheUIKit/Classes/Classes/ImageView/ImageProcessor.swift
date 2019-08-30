@@ -6,7 +6,7 @@ public struct CropAlphaProcessor: ImageProcessor {
 
     public let identifier = "dk.mustache.cropalphaprocessor"
 
-    init() {}
+    public init() {}
 
     // Convert input data/image to target image and return it.
     public func process(item: ImageProcessItem, options: KingfisherParsedOptionsInfo) -> Image? {
@@ -27,7 +27,7 @@ public struct GradientProcessor: ImageProcessor {
 
     public let identifier = "dk.mustache.cropalphaprocessor"
 
-    init() {}
+    public init() {}
 
     init(locations: [Double], colors: [UIColor]) {
         self.locations = locations.map { $0.cgfloat }
