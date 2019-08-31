@@ -1,10 +1,9 @@
-
 import Foundation
 import UIKit
 
 public class GradientImageView: UIImageView {
 
-    fileprivate var gradientMask: CAGradientLayer!
+    fileprivate var gradientMask: CAGradientLayer?
 
     public var colors: [UIColor] = [UIColor.clear, UIColor.black, UIColor.black, UIColor.clear] {
         didSet { self.configure() }
@@ -23,11 +22,11 @@ public class GradientImageView: UIImageView {
     }
 
     override open var bounds: CGRect {
-        didSet { self.gradientMask.frame = self.bounds }
+        didSet { self.gradientMask?.frame = self.bounds }
     }
 
     override open var frame: CGRect {
-        didSet { self.gradientMask.frame = self.bounds }
+        didSet { self.gradientMask?.frame = self.bounds }
     }
 
     override public init(image: UIImage?) {
@@ -52,10 +51,10 @@ public class GradientImageView: UIImageView {
 
     fileprivate func configure() {
         self.gradientMask = CAGradientLayer()
-        self.gradientMask.colors = self.colors.map { $0.cgColor }
-        self.gradientMask.locations = self.locations.map { NSNumber(value: $0) }
-        self.gradientMask.startPoint = self.startPoint
-        self.gradientMask.endPoint = self.endPoint
+        self.gradientMask?.colors = self.colors.map { $0.cgColor }
+        self.gradientMask?.locations = self.locations.map { NSNumber(value: $0) }
+        self.gradientMask?.startPoint = self.startPoint
+        self.gradientMask?.endPoint = self.endPoint
 
         self.layer.mask = self.gradientMask
 
@@ -64,6 +63,6 @@ public class GradientImageView: UIImageView {
 
     override open func layoutSubviews() {
         super.layoutSubviews()
-        self.gradientMask.frame = self.bounds
+        self.gradientMask?.frame = self.bounds
     }
 }
