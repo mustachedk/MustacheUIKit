@@ -68,7 +68,7 @@ public class LocalizableTextField: TextField {
     }
 }
 
-extension NSNotification.Name {
+public extension NSNotification.Name {
 
     static let updatedTranslations = NSNotification.Name(rawValue: "updatedTranslations")
 
