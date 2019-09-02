@@ -20,6 +20,12 @@ public class LocalizableLabel: UILabel {
 
     override open func awakeFromNib() {
         super.awakeFromNib()
+        self.updateLocalization()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateLocalization), name: .updatedTranslations, object: nil)
+    }
+
+    @objc
+    fileprivate func updateLocalization(){
         if let key = self.translationKey, key != key.configLocalized {
             self.text = key.configLocalized
         }
@@ -32,6 +38,12 @@ public class LocalizableButton: Button {
 
     override open func awakeFromNib() {
         super.awakeFromNib()
+        self.updateLocalization()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateLocalization), name: .updatedTranslations, object: nil)
+    }
+
+    @objc
+    fileprivate func updateLocalization(){
         if let key = self.translationKey, key != key.configLocalized {
             self.setTitle(key.configLocalized, for: UIControl.State())
         }
@@ -44,8 +56,20 @@ public class LocalizableTextField: TextField {
 
     override open func awakeFromNib() {
         super.awakeFromNib()
+        self.updateLocalization()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateLocalization), name: .updatedTranslations, object: nil)
+    }
+
+    @objc
+    fileprivate func updateLocalization(){
         if let key = self.translationKey, key != key.configLocalized {
             self.placeholder = key.configLocalized
         }
     }
+}
+
+extension NSNotification.Name {
+
+    static let updatedTranslations = NSNotification.Name(rawValue: "updatedTranslations")
+
 }
