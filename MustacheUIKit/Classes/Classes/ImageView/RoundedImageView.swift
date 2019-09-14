@@ -30,6 +30,7 @@ open class RoundedImageView: View {
     }
 
     fileprivate func configureConstraints() {
+        self.imageView.translatesAutoresizingMaskIntoConstraints = false
         self.imageView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
         self.imageView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         self.imageView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
