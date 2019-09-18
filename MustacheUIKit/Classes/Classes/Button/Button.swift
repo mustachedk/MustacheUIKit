@@ -5,6 +5,11 @@ open class Button: UIButton {
 
     //----------------------------------- UIColor -----------------------------------//
 
+    /// Sets a background color using setBackgroundImage by creating an image with the specifed color
+    ///
+    /// - Parameters:
+    ///     - color: Color of the background
+    ///     - for: Which state should this background color apply to
     public func set(color: UIColor?, for state: UIControl.State) {
         if let color = color {
             let image = UIImage.imageWithColor(color: color)
@@ -14,12 +19,14 @@ open class Button: UIButton {
         }
     }
 
+    /// Border with on the layer
     @IBInspectable
     public var borderWidth: CGFloat {
         get { return self.layer.borderWidth }
         set { self.layer.borderWidth = newValue }
     }
 
+    /// Border color on the layer
     @IBInspectable
     public var borderColor: UIColor? {
         get { return UIColor(cgColor: self.layer.borderColor!) }
@@ -29,6 +36,8 @@ open class Button: UIButton {
     //----------------------------------- UIActivityIndicator -----------------------------------//
 
     fileprivate var activityIndicator = UIActivityIndicatorView(style: .white)
+
+    /// ActivityIndicatorStyle for the button when its busy
     public var activityIndicatorStyle: UIActivityIndicatorView.Style {
         get { return self.activityIndicator.style }
         set { self.activityIndicator.style = newValue }
@@ -39,6 +48,7 @@ open class Button: UIButton {
     fileprivate var disabledTitle: String?
     fileprivate var selectedTitle: String?
 
+    /// Hides the text and shows an UIActivityIndicatorView spinning when true
     open var isBusy: Bool = false {
         didSet {
             self.isUserInteractionEnabled = !isBusy
@@ -78,6 +88,7 @@ open class Button: UIButton {
     //----------------------------------- DidTapButton -----------------------------------//
 
     public typealias DidTapButton = (Button) -> Void
+    /// Closure for reacting to .touchUpInside events
     public var didTouchUpInside: DidTapButton? {
         didSet {
             if didTouchUpInside != nil {
@@ -120,6 +131,7 @@ open class Button: UIButton {
 
     // ----------------------------- Rounded -----------------------------//
 
+    /// Corner radius with on the layer
     @IBInspectable
     open var cornerRadius: CGFloat {
         set { self.layer.cornerRadius = newValue }
@@ -130,21 +142,25 @@ open class Button: UIButton {
         // self.clipsToBounds = self.layer.cornerRadius > 0
     }
 
+    /// Should the upper left corner be rounded
     @IBInspectable
     open var cornerUL: Bool = false { //UpperLeft
         didSet { self.updateCorners() }
     }
 
+    /// Should the upper right corner be rounded
     @IBInspectable
     open var cornerUR: Bool = false { //UpperRight
         didSet { self.updateCorners() }
     }
 
+    /// Should the lower left corner be rounded
     @IBInspectable
     open var cornerLL: Bool = false { //LowerLeft
         didSet { self.updateCorners() }
     }
 
+    /// Should the lower right corner be rounded
     @IBInspectable
     open var cornerLR: Bool = false { //LowerRight
         didSet { self.updateCorners() }
@@ -161,24 +177,32 @@ open class Button: UIButton {
 
     // ----------------------------- Shadow -----------------------------//
 
+
+    /// Applies shadow the view
     @IBInspectable
     open var hasShadow: Bool = false
 
+    /// Color of shadow, default .black
     @IBInspectable
     open var sketchColor: UIColor = .black
 
+    /// Alpha of shadow as defined in Sketch
     @IBInspectable
     open var sketchAlpha: Float = 0.5
 
+    /// X of shadow as defined in Sketch
     @IBInspectable
     open var sketchX: CGFloat = 0
 
+    /// Y of shadow as defined in Sketch
     @IBInspectable
     open var sketchY: CGFloat = 0
 
+    /// Blur of shadow as defined in Sketch
     @IBInspectable
     open var sketchBlur: CGFloat = 0
 
+    /// Spread of shadow as defined in Sketch
     @IBInspectable
     open var sketchSpread: CGFloat = 0
 
@@ -202,15 +226,19 @@ open class Button: UIButton {
 
     // ----------------------------- Font -----------------------------//
 
+    /// Font for normal state
     @IBInspectable
     public var normalFont: UIFont?
 
+    /// Font for highlighted state
     @IBInspectable
     public var highlightedFont: UIFont?
 
+    /// Font for disabled state
     @IBInspectable
     public var disabledFont: UIFont?
 
+    /// Font for selected state
     @IBInspectable
     public var selectedFont: UIFont?
 
@@ -240,10 +268,16 @@ open class Button: UIButton {
 
     fileprivate var gradientLayer = CAGradientLayer()
 
+    /// Start color if we want a button with a gradient background
     @IBInspectable open var startColor: UIColor?
+
+    /// End color if we want a button with a gradient background
     @IBInspectable open var endColor: UIColor?
 
+    /// Start point if we want a button with a gradient background
     @IBInspectable open var startPoint: CGPoint = CGPoint(x: 0.5, y: 0)
+
+    /// End point if we want a button with a gradient background
     @IBInspectable open var endPoint: CGPoint = CGPoint(x: 0.5, y: 1)
 
     fileprivate func configureGradient() {

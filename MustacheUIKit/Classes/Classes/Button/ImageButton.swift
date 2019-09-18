@@ -11,11 +11,11 @@ open class ImageButton: Button {
     /**
     Convenience init for button with image and minimum hit size of 44x44
 
-    - returns:
-    ImageButton
-
     - parameters:
         - image: UIImage
+
+    - returns:
+        ImageButton
 
     */
     public convenience init(image: UIImage) {

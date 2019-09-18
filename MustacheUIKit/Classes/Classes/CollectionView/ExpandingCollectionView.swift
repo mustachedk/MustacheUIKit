@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+/// A collection that will expand so that frame.size equals bounds.size
 open class ExpandingCollectionView: UICollectionView {
 
     override open func reloadData() {

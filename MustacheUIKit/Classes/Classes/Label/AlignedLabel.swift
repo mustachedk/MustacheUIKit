@@ -1,8 +1,10 @@
 import Foundation
 import UIKit
 
+/// A Label that can be aligned top and bottom
 public class AlignedLabel: Label {
 
+    /// Vertical alignment of the text
     public var verticalAlignment: VerticalAlignment = .middle {
         didSet {
             setNeedsDisplay()

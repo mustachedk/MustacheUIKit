@@ -2,6 +2,7 @@
 import Foundation
 import Kingfisher
 
+/// A ImageProcessor that cuts of the surrounding alpha of an UIImage
 public struct CropAlphaProcessor: ImageProcessor {
 
     public let identifier = "dk.mustache.cropalphaprocessor"
@@ -20,6 +21,7 @@ public struct CropAlphaProcessor: ImageProcessor {
     }
 }
 
+/// A ImageProcessor that applies a gradient color to and image
 public struct GradientProcessor: ImageProcessor {
 
     var locations: [CGFloat] = [0.0, 0.15, 0.85, 1.0]

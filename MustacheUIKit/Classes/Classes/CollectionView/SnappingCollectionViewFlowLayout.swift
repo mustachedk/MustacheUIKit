@@ -1,6 +1,7 @@
 import Foundation
 import UIKit
 
+/// A collection that will snap so that the cell on the left will be inset just like content inset
 public class SnappingCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
     override public func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {

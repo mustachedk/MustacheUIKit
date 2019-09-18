@@ -1,5 +1,6 @@
 import UIKit
 
+/// A ImageView inside a View so that we round the image and still use shadows and etc
 @IBDesignable
 open class RoundedImageView: View {
 
