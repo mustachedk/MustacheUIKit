@@ -1,16 +1,16 @@
 Pod::Spec.new do |s|
   s.name             = 'MustacheUIKit'
-  s.version          = '0.3.8'
+  s.version          = '1.0.9'
   s.summary          = 'Helper methods used at Mustache when creating new apps.'
   s.homepage         = 'https://github.com/mustachedk/MustacheUIKit'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Tommy Sadiq Hinrichsen' => 'th@mustache.dk' }
   s.source           = { :git => 'https://github.com/mustachedk/MustacheUIKit.git', :tag => s.version.to_s }
-  s.swift_version = '5.0'
+  s.swift_version = '5.1'
 
   s.ios.deployment_target = '11.0'
 
-  s.source_files = 'MustacheUIKit/Classes/**/*', 'MustacheUIKit/Extensions/**/*'
+  s.source_files = 'Sources/MustacheUIKit/Classes/**/*', 'Sources/MustacheUIKit/Extensions/**/*'
 
   s.frameworks = 'UIKit'
 

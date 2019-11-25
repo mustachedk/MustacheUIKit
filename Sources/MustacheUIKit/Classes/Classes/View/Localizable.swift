@@ -68,6 +68,24 @@ public class LocalizableTextField: TextField {
     }
 }
 
+public class LocalizableSearchBar: UISearchBar {
+
+    @IBInspectable public var translationKey: String?
+
+    override open func awakeFromNib() {
+        super.awakeFromNib()
+        self.updateLocalization()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateLocalization), name: .updatedTranslations, object: nil)
+    }
+
+    @objc
+    fileprivate func updateLocalization(){
+        if let key = self.translationKey, key != key.configLocalized {
+            self.placeholder = key.configLocalized
+        }
+    }
+}
+
 public extension NSNotification.Name {
 
     static let updatedTranslations = NSNotification.Name(rawValue: "updatedTranslations")
