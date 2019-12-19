@@ -11,7 +11,7 @@ public struct CropAlphaProcessor: ImageProcessor {
     public init() {}
 
     // Convert input data/image to target image and return it.
-    public func process(item: ImageProcessItem, options: KingfisherParsedOptionsInfo) -> Image? {
+    public func process(item: ImageProcessItem, options: KingfisherParsedOptionsInfo) -> KFCrossPlatformImage? {
         switch item {
             case .image(let image):
                 return image.cropImageByAlpha()
@@ -38,7 +38,7 @@ public struct GradientProcessor: ImageProcessor {
     }
 
     // Convert input data/image to target image and return it.
-    public func process(item: ImageProcessItem, options: KingfisherParsedOptionsInfo) -> Image? {
+    public func process(item: ImageProcessItem, options: KingfisherParsedOptionsInfo) -> KFCrossPlatformImage? {
         switch item {
             case .image(let image):
                 return image.withGradient(locations: locations, colors: colors)
