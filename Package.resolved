@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Kingfisher",
+        "repositoryURL": "https://github.com/onevcat/Kingfisher.git",
+        "state": {
+          "branch": null,
+          "revision": "44bfa76787a0f07e4d5ae3304e9d4f631fd519bd",
+          "version": "5.13.0"
+        }
+      },
+      {
+        "package": "MustacheFoundation",
+        "repositoryURL": "https://github.com/mustachedk/MustacheFoundation",
+        "state": {
+          "branch": null,
+          "revision": "cd877121983864b5190f1304c82dfef4b5a393e3",
+          "version": "1.0.3"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

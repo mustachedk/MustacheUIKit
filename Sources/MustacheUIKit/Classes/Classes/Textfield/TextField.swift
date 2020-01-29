@@ -5,6 +5,8 @@ open class TextField: UITextField {
 
     // ------------------------- Apperance ------------------------- //
 
+    @IBInspectable open var placeholderColor: UIColor = .lightGray
+
     @IBInspectable open var toolBarTintColor: UIColor? = .black
 
     @IBInspectable open var toolBarBackgroundColor: UIColor? = .white
@@ -190,8 +192,19 @@ open class TextField: UITextField {
 
     public required init?(coder: NSCoder) { super.init(coder: coder) }
 
+    override open func layoutSubviews(){
+      super.layoutSubviews()
+      self.configurePlaceHolder()
+    }
+
     open override func awakeFromNib() {
         super.awakeFromNib()
         self.addAccessoryView(previousImage: self.previousImage, nextImage: self.nextImage, doneText: self.doneText, dismissText: self.dismissText, textColor: self.toolBarTintColor, backgroundColor: self.toolBarBackgroundColor)
+    }
+
+    fileprivate func configurePlaceHolder(){
+      guard let currentAttributedString = self.attributedPlaceholder else { return }
+      let attributes: [NSAttributedString.Key: UIColor] = [.foregroundColor: self.placeholderColor]
+      self.attributedPlaceholder = NSAttributedString(string: currentAttributedString.string, attributes: attributes)
     }
 }
