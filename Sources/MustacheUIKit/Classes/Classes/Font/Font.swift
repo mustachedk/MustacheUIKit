@@ -66,11 +66,11 @@ public enum EncodeSans: Font {
 
     case semiBold(CGFloat)
     case regular(CGFloat)
+    case bold(CGFloat)
 
     public var size: CGFloat {
         switch self {
-        case .semiBold(let size), .regular(let size):
-            return size
+          case .semiBold(let size), .regular(let size), .bold(let size): return size
         }
     }
 }
