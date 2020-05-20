@@ -57,7 +57,7 @@ open class Button: UIButton {
     open var isBusy: Bool = false {
         didSet {
             self.isUserInteractionEnabled = !isBusy
-            self.activityIndicator.tintColor = self.titleLabel?.textColor ?? .black
+            self.activityIndicator.tintColor = self.titleLabel?.textColor ?? self.tintColor
             self.isBusy ? self.activityIndicator.startAnimating() : self.activityIndicator.stopAnimating()
             if self.isBusy {
                 
