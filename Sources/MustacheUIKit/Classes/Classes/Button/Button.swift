@@ -99,6 +99,17 @@ open class Button: UIButton {
             default:break
         }
     }
+    
+    open override func setImage(_ image: UIImage?, for state: State) {
+        super.setImage(image, for: state)
+        switch state {
+            case .normal: self.normalImage = image
+            case .highlighted: self.highlightedImage = image
+            case .disabled: self.disabledImage = image
+            case .selected: self.selectedImage = image
+            default:break
+        }
+    }
 
     fileprivate func configureBusy() {
         self.activityIndicator.color = self.titleLabel?.textColor
