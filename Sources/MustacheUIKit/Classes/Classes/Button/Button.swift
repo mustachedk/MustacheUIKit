@@ -47,25 +47,44 @@ open class Button: UIButton {
     fileprivate var highlightedTitle: String?
     fileprivate var disabledTitle: String?
     fileprivate var selectedTitle: String?
+    
+    fileprivate var normalImage: UIImage?
+    fileprivate var highlightedImage: UIImage?
+    fileprivate var disabledImage: UIImage?
+    fileprivate var selectedImage: UIImage?
 
     /// Hides the text and shows an UIActivityIndicatorView spinning when true
     open var isBusy: Bool = false {
         didSet {
             self.isUserInteractionEnabled = !isBusy
-            self.imageView?.isHidden = self.isBusy
             self.activityIndicator.tintColor = self.titleLabel?.textColor ?? .black
             self.isBusy ? self.activityIndicator.startAnimating() : self.activityIndicator.stopAnimating()
             if self.isBusy {
+                
                 self.normalTitle = self.title(for: .normal)
                 self.highlightedTitle = self.title(for: .highlighted)
                 self.disabledTitle = self.title(for: .disabled)
                 self.selectedTitle = self.title(for: .selected)
+                
+                self.normalImage = self.image(for: .normal)
+                self.highlightedImage = self.image(for: .highlighted)
+                self.disabledImage = self.image(for: .disabled)
+                self.selectedImage = self.image(for: .selected)
+                
                 super.setTitle("", for: UIControl.State())
+                super.setImage(nil, for: UIControl.State())
+                
             } else {
+                
                 self.setTitle(self.normalTitle, for: .normal)
                 self.setTitle(self.highlightedTitle, for: .highlighted)
                 self.setTitle(self.disabledTitle, for: .disabled)
                 self.setTitle(self.selectedTitle, for: .selected)
+                
+                self.setImage(self.normalImage, for: .normal)
+                self.setImage(self.highlightedImage, for: .highlighted)
+                self.setImage(self.disabledImage, for: .disabled)
+                self.setImage(self.selectedImage, for: .selected)
             }
         }
     }
