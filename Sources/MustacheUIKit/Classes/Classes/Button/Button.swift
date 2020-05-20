@@ -330,4 +330,18 @@ open class Button: UIButton {
         self.configureShadow()
         self.configureBusy()
     }
+    
+    open override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        self.normalTitle = self.title(for: .normal)
+        self.highlightedTitle = self.title(for: .highlighted)
+        self.disabledTitle = self.title(for: .disabled)
+        self.selectedTitle = self.title(for: .selected)
+        
+        self.normalImage = self.image(for: .normal)
+        self.highlightedImage = self.image(for: .highlighted)
+        self.disabledImage = self.image(for: .disabled)
+        self.selectedImage = self.image(for: .selected)
+    }
 }
