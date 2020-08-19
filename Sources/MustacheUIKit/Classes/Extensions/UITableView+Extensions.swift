@@ -11,6 +11,7 @@ public extension UITableView {
         - indexPath: IndexPath
         - radius: CGFloat
     */
+
     func addCorners(cell: UITableViewCell, indexPath: IndexPath, radius: CGFloat = 12) {
 
         let rows: Int = self.numberOfRows(inSection: indexPath.section) - 1
@@ -156,4 +157,16 @@ public extension UITableView {
             }
         }
     }
+}
+
+public extension UITableView {
+
+    func isLast(_ indexPath: IndexPath) -> Bool {
+        return (self.numberOfSections == (indexPath.section + 1)) && (self.numberOfRows(inSection: indexPath.section) == (indexPath.row + 1))
+    }
+
+    func isLastInSection(_ indexPath: IndexPath) -> Bool {
+        return self.numberOfRows(inSection: indexPath.section) == (indexPath.row + 1)
+    }
+
 }
