@@ -11,9 +11,9 @@ public class SlidingTransition: NSObject, UIViewControllerAnimatedTransitioning 
         self.viewControllers = viewControllers
     }
 
-    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval { TimeInterval(transitionDuration) }
+    public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval { TimeInterval(transitionDuration) }
 
-    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+    public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
 
         guard let fromVC = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from),
               let fromView = fromVC.view,

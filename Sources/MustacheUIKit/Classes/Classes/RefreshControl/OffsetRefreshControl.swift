@@ -1,4 +1,6 @@
 
+import UIKit
+
 open class OffsetRefreshControl: UIRefreshControl {
 
     public var offset: CGFloat = 100
