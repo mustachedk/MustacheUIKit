@@ -66,7 +66,7 @@ public class ShadowImageView: UIImageView {
     fileprivate func configureShadow() {
         defer { UIGraphicsEndImageContext() }
         guard var image = self.originalImage else { return }
-        let size = CGSize(width: image.size.width + self.sketchX, height: image.size.height + self.sketchY)
+        let size = CGSize(width: image.size.width + self.sketchX + (self.sketchBlur / 2), height: image.size.height + self.sketchY + (self.sketchBlur / 2))
         UIGraphicsBeginImageContextWithOptions(size, false, UIScreen.main.scale)
         guard let context = UIGraphicsGetCurrentContext() else { return }
 

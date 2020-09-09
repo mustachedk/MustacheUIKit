@@ -156,11 +156,14 @@ public extension UIView {
 //Image
 public extension UIView {
 
-    func snapshot() -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(self.bounds.size, true, UIScreen.main.scale)
-        self.layer.render(in: UIGraphicsGetCurrentContext()!)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return image
-    }
+    func snapshot(opaque: Bool = false) -> UIImage? {
+      UIGraphicsBeginImageContextWithOptions(self.bounds.size, opaque, UIScreen.main.scale)
+      guard let context = UIGraphicsGetCurrentContext() else { return nil }
+      self.layer.render(in: context)
+      let image = UIGraphicsGetImageFromCurrentImageContext()
+      UIGraphicsEndImageContext()
+
+      guard let imageData = image?.pngData() else { return nil }
+      return UIImage(data: imageData)
+  }
 }

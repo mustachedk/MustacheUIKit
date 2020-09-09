@@ -47,7 +47,7 @@ open class Button: UIButton {
     fileprivate var highlightedTitle: String?
     fileprivate var disabledTitle: String?
     fileprivate var selectedTitle: String?
-    
+
     fileprivate var normalImage: UIImage?
     fileprivate var highlightedImage: UIImage?
     fileprivate var disabledImage: UIImage?
@@ -60,27 +60,27 @@ open class Button: UIButton {
             self.activityIndicator.tintColor = self.titleLabel?.textColor ?? self.tintColor
             self.isBusy ? self.activityIndicator.startAnimating() : self.activityIndicator.stopAnimating()
             if self.isBusy {
-                
+
                 self.normalTitle = self.title(for: .normal)
                 self.highlightedTitle = self.title(for: .highlighted)
                 self.disabledTitle = self.title(for: .disabled)
                 self.selectedTitle = self.title(for: .selected)
-                
+
                 self.normalImage = self.image(for: .normal)
                 self.highlightedImage = self.image(for: .highlighted)
                 self.disabledImage = self.image(for: .disabled)
                 self.selectedImage = self.image(for: .selected)
-                
+
                 super.setTitle("", for: UIControl.State())
                 super.setImage(nil, for: UIControl.State())
-                
+
             } else {
-                
+
                 self.setTitle(self.normalTitle, for: .normal)
                 self.setTitle(self.highlightedTitle, for: .highlighted)
                 self.setTitle(self.disabledTitle, for: .disabled)
                 self.setTitle(self.selectedTitle, for: .selected)
-                
+
                 self.setImage(self.normalImage, for: .normal)
                 self.setImage(self.highlightedImage, for: .highlighted)
                 self.setImage(self.disabledImage, for: .disabled)
@@ -99,7 +99,7 @@ open class Button: UIButton {
             default:break
         }
     }
-    
+
     open override func setImage(_ image: UIImage?, for state: State) {
         super.setImage(image, for: state)
         switch state {
@@ -317,6 +317,8 @@ open class Button: UIButton {
             self.gradientLayer.startPoint = startPoint
             self.gradientLayer.endPoint = endPoint
             self.layer.insertSublayer(self.gradientLayer, at: 0)
+        } else {
+            self.gradientLayer.removeFromSuperlayer()
         }
     }
 
@@ -330,15 +332,15 @@ open class Button: UIButton {
         self.configureShadow()
         self.configureBusy()
     }
-    
+
     open override func awakeFromNib() {
         super.awakeFromNib()
-        
+
         self.normalTitle = self.title(for: .normal)
         self.highlightedTitle = self.title(for: .highlighted)
         self.disabledTitle = self.title(for: .disabled)
         self.selectedTitle = self.title(for: .selected)
-        
+
         self.normalImage = self.image(for: .normal)
         self.highlightedImage = self.image(for: .highlighted)
         self.disabledImage = self.image(for: .disabled)

@@ -78,6 +78,40 @@ public extension UICollectionView {
         let uiNib = UINib(nibName: supplementaryNib.nibName, bundle: nil)
         self.register(uiNib, forSupplementaryViewOfKind: type.kind, withReuseIdentifier: supplementaryNib.nibName)
     }
+
+    /**
+       Convenience method for selecting all rows in UITableView
+
+       - parameters:
+           - animated: Bool default = false
+           - forwardToDelegate: Bool default = false
+   */
+   func selectAllRows(animated: Bool = false, forwardToDelegate: Bool = false) {
+       for section in 0..<self.numberOfSections {
+           for row in 0..<self.numberOfItems(inSection: section) {
+               let indexPath = IndexPath(row: row, section: section)
+               self.selectItem(at: indexPath, animated: animated, scrollPosition: [])
+               if forwardToDelegate { self.delegate?.collectionView?(self, didSelectItemAt: indexPath) }
+           }
+       }
+   }
+
+   /**
+       Convenience method for deselecting all rows in UITableView
+
+       - parameters:
+           - animated: Bool default = false
+           - forwardToDelegate: Bool default = false
+   */
+   func deselectAllRows(animated: Bool = false, forwardToDelegate: Bool = false) {
+       for section in 0..<self.numberOfSections {
+           for row in 0..<self.numberOfItems(inSection: section) {
+               let indexPath = IndexPath(row: row, section: section)
+               self.deselectItem(at: indexPath, animated: animated)
+               if forwardToDelegate { self.delegate?.collectionView?(self, didDeselectItemAt: indexPath) }
+           }
+       }
+   }
 }
 
 /// Convenience enum for UICollectionView supplementary view
