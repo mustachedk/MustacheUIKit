@@ -10,7 +10,7 @@ let package = Package(
     .library(name: "MustacheUIKit", targets: ["MustacheUIKit"]),
   ],
   dependencies: [
-   .package(url: "https://github.com/mustachedk/MustacheFoundation", .upToNextMajor(from: "1.0.0")),
+   .package(url: "https://github.com/mustachedk/MustacheFoundation", .upToNextMajor(from: "2.0.0")),
    .package(url: "https://github.com/onevcat/Kingfisher.git", .upToNextMajor(from: "5.0.0")),
  ],
   targets: [
