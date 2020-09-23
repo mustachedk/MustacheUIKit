@@ -65,6 +65,9 @@ public class LocalizableTextField: TextField {
         if let key = self.translationKey, key != key.configLocalized {
             self.placeholder = key.configLocalized
         }
+        if let placeholderTranslationKey = self.placeholderTranslationKey, placeholderTranslationKey != placeholderTranslationKey.configLocalized {
+            self.placeholder = placeholderTranslationKey.configLocalized
+        }
     }
 }
 
