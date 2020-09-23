@@ -145,21 +145,21 @@ public extension CAMediaTimingFunction {
 public extension UIView {
 
     ///https://www.calayer.com/core-animation/2016/05/17/catransaction-in-depth.html
-    class func animate(duration: TimeInterval, animationOption: CAMediaTimingFunction, animations: @escaping () -> Void, completion: (() -> Void)? = nil) {
+  class func animate(duration: TimeInterval, delay: TimeInterval = 0, animationOption: CAMediaTimingFunction, animations: @escaping () -> Void, completion: (() -> Void)? = nil) {
 
-        CATransaction.begin()
-        CATransaction.setAnimationTimingFunction(animationOption)
+         CATransaction.begin()
+         CATransaction.setAnimationTimingFunction(animationOption)
 
-        CATransaction.setCompletionBlock {
-            completion?()
-        }
+         CATransaction.setCompletionBlock {
+             completion?()
+         }
 
-        UIView.animate(withDuration: duration) {
-            animations()
-        }
+         UIView.animate(withDuration: duration, delay: delay) {
+             animations()
+         }
 
-        CATransaction.commit()
-    }
+         CATransaction.commit()
+     }
 
     func animateElastic(duration: TimeInterval, animationType: AnimationType, animationOption: ElasticAnimationType, isAdditive: Bool = false) {
 
