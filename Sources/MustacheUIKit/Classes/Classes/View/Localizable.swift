@@ -54,6 +54,8 @@ public class LocalizableTextField: TextField {
 
     @IBInspectable public var translationKey: String?
 
+    @IBInspectable public var placeholderTranslationKey: String?
+
     override open func awakeFromNib() {
         super.awakeFromNib()
         self.updateLocalization()
