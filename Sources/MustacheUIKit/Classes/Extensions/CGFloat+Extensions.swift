@@ -11,6 +11,9 @@ public extension CGFloat {
     /// Convenience Float value
     var float: Float { return Float(self) }
 
+    /// Convenience NSNumber value
+    var number: NSNumber { return NSNumber(value: self.float) }
+
     func toRadians() -> CGFloat {
         return self * .pi / 180.0
     }
