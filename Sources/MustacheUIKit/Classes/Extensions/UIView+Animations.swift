@@ -154,9 +154,7 @@ public extension UIView {
              completion?()
          }
 
-         UIView.animate(withDuration: duration, delay: delay) {
-             animations()
-         }
+         UIView.animate(withDuration: duration, delay: delay, animations: animations, completion: { _ in completion() }})
 
          CATransaction.commit()
      }
