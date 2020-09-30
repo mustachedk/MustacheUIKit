@@ -25,6 +25,7 @@ public extension UIView {
                        completion: completion)
     }
 
+
     /**
      Convenience method for rotating a view using CGAffineTransform
 
@@ -154,7 +155,8 @@ public extension UIView {
              completion?()
          }
 
-         UIView.animate(withDuration: duration, delay: delay, animations: animations, completion: { _ in completion() }})
+         UIView.animate(withDuration: duration, delay: delay, animations: animations, completion: { _ in completion() })
+
 
          CATransaction.commit()
      }
