@@ -56,7 +56,7 @@ public final class SwipeNavigationController: UINavigationController {
 
 // MARK: - UINavigationControllerDelegate
 
-public extension SwipeNavigationController: UINavigationControllerDelegate {
+extension SwipeNavigationController: UINavigationControllerDelegate {
 
     public func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         guard let swipeNavigationController = navigationController as? SwipeNavigationController else { return }
@@ -75,7 +75,7 @@ public extension SwipeNavigationController: UINavigationControllerDelegate {
 
 // MARK: - UIGestureRecognizerDelegate
 
-public extension SwipeNavigationController: UIGestureRecognizerDelegate {
+extension SwipeNavigationController: UIGestureRecognizerDelegate {
 
     public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         guard gestureRecognizer == self.interactivePopGestureRecognizer else { return true } // default value
