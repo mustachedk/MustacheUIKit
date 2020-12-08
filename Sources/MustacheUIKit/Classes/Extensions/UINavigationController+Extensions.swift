@@ -9,4 +9,32 @@ public extension UINavigationController {
             return self
         }
     }
+
+    func pushViewController(viewController: UIViewController, animated: Bool, completion: @escaping () -> ()) {
+        self.pushViewController(viewController, animated: animated)
+
+        if let coordinator = self.transitionCoordinator {
+            coordinator.animate(alongsideTransition: { _ in }, completion: { _ in completion() } )
+        } else {
+            completion()
+        }
+    }
+
+    func popViewController(animated: Bool, completion: @escaping  () -> ()) {
+        self.popViewController(animated: animated)
+        if let coordinator = self.transitionCoordinator {
+            coordinator.animate(alongsideTransition: { _ in }, completion: { _ in completion() } )
+        } else {
+            completion()
+        }
+    }
+
+    func popToRootViewController(animated: Bool, completion: @escaping  () -> ()) {
+        self.popToRootViewController(animated: animated)
+        if let coordinator = self.transitionCoordinator {
+            coordinator.animate(alongsideTransition: { _ in }, completion: { _ in completion() } )
+        } else {
+            completion()
+        }
+    }
 }

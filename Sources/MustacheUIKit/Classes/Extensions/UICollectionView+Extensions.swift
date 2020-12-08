@@ -86,7 +86,7 @@ public extension UICollectionView {
            - animated: Bool default = false
            - forwardToDelegate: Bool default = false
    */
-   func selectAllRows(animated: Bool = false, forwardToDelegate: Bool = false) {
+   func selectAllItems(animated: Bool = false, forwardToDelegate: Bool = false) {
        for section in 0..<self.numberOfSections {
            for row in 0..<self.numberOfItems(inSection: section) {
                let indexPath = IndexPath(row: row, section: section)
@@ -103,7 +103,7 @@ public extension UICollectionView {
            - animated: Bool default = false
            - forwardToDelegate: Bool default = false
    */
-   func deselectAllRows(animated: Bool = false, forwardToDelegate: Bool = false) {
+   func deSelectAllItems(animated: Bool = false, forwardToDelegate: Bool = false) {
        for section in 0..<self.numberOfSections {
            for row in 0..<self.numberOfItems(inSection: section) {
                let indexPath = IndexPath(row: row, section: section)
@@ -112,6 +112,15 @@ public extension UICollectionView {
            }
        }
    }
+
+   func reloadData(completion: @escaping (() -> ())) {
+        UIView.animate(withDuration: 0) {
+            self.reloadData()
+        } completion: { _ in
+            completion()
+        }
+    }
+
 }
 
 /// Convenience enum for UICollectionView supplementary view

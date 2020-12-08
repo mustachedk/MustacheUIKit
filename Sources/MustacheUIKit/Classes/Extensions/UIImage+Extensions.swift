@@ -53,27 +53,28 @@ public extension UIImage {
         - degrees: CGFloat
 
     */
-    func imageRotatedBy(degrees : CGFloat) -> UIImage {
-        let maxSize = max(self.size.width, self.size.height)
-        let size = CGSize(width: maxSize, height: maxSize)
+    func imageRotated(degrees: CGFloat) -> UIImage {
+        let rotatedViewBox: UIView = UIView(frame: CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height))
+        let transform: CGAffineTransform = CGAffineTransform(rotationAngle: degrees * .pi / 180)
+        rotatedViewBox.transform = transform
+        let rotatedSize: CGSize = rotatedViewBox.frame.size
 
-        UIGraphicsBeginImageContext(size)
+        UIGraphicsBeginImageContextWithOptions(rotatedSize, false, UIScreen.main.scale)
+        defer { UIGraphicsEndImageContext() }
+        guard let context = UIGraphicsGetCurrentContext() else { return self }
 
-        let bitmap: CGContext = UIGraphicsGetCurrentContext()!
-        //Move the origin to the middle of the image so we will rotate and scale around the center.
-        bitmap.translateBy(x: size.width / 2, y: size.height / 2)
-        //Rotate the image context
-        bitmap.rotate(by: (degrees * CGFloat(Double.pi / 180)))
-        //Now, draw the rotated/scaled image into the context
-        bitmap.scaleBy(x: 1.0, y: -1.0)
+        context.translateBy(x: rotatedSize.width / 2, y: rotatedSize.height / 2)
+        context.rotate(by: degrees * .pi / 180)
+        context.scaleBy(x: 1.0, y: -1.0)
 
-        let origin = CGPoint(x: -size.width / 2, y: -size.width / 2)
+        guard let cgImage = self.cgImage else { return self }
+        let rect = CGRect(x: -self.size.width / 2, y: -self.size.height / 2, width: self.size.width, height: self.size.height)
 
-        bitmap.draw(self.cgImage!, in: CGRect(origin: origin, size: size))
+        context.draw(cgImage, in: rect)
 
-        let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        return newImage
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+
+        return newImage ?? self
     }
 
     /**

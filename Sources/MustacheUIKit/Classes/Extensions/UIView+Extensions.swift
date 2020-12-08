@@ -167,3 +167,19 @@ public extension UIView {
       return UIImage(data: imageData)
   }
 }
+
+public extension UIView {
+
+    var isVisible: Bool {
+        return isVisible(view: self, inView: self.superview)
+    }
+
+    fileprivate func isVisible(view: UIView, inView: UIView?) -> Bool {
+        guard let inView = inView else { return true }
+        let viewFrame = inView.convert(view.bounds, from: view)
+        if viewFrame.intersects(inView.bounds) {
+            return isVisible(view: view, inView: inView.superview)
+        }
+        return false
+    }
+}

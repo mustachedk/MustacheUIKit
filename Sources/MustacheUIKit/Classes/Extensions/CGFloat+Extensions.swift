@@ -21,6 +21,10 @@ public extension CGFloat {
     func toDegrees() -> CGFloat {
         return self * 180.0 / .pi
     }
+
+    func close(to rhs: CGFloat, delta: CGFloat = 0.01) -> Bool {
+      return abs(self - rhs) < delta
+  }
 }
 
 public extension String {
