@@ -7,6 +7,7 @@ open class ExpandingTableView: UITableView {
     override open func reloadData() {
 
         guard let heightConstraint = self.heightConstraint, heightConstraint.priority.rawValue < 750  else { return }
+        var height: CGFloat = 0.0
 
         for section in 0..<(self.dataSource?.numberOfSections?(in: self) ?? 1) {
 
@@ -30,5 +31,5 @@ open class ExpandingTableView: UITableView {
       super.layoutSubviews()
       self.isScrollEnabled = (self.contentSize.height > self.frame.height)
     }
-    
+
 }
