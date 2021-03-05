@@ -14,7 +14,7 @@ public extension String {
     }
 }
 
-public class LocalizableLabel: UILabel {
+open class LocalizableLabel: UILabel {
 
     @IBInspectable public var translationKey: String?
 
@@ -32,7 +32,7 @@ public class LocalizableLabel: UILabel {
     }
 }
 
-public class LocalizableButton: Button {
+open class LocalizableButton: Button {
 
     @IBInspectable public var translationKey: String?
 
@@ -50,7 +50,7 @@ public class LocalizableButton: Button {
     }
 }
 
-public class LocalizableTextField: TextField {
+open class LocalizableTextField: TextField {
 
     @IBInspectable public var translationKey: String?
 
@@ -73,7 +73,7 @@ public class LocalizableTextField: TextField {
     }
 }
 
-public class LocalizableSearchBar: UISearchBar {
+open class LocalizableSearchBar: UISearchBar {
 
     @IBInspectable public var translationKey: String?
 
