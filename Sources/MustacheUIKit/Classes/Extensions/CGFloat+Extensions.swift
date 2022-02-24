@@ -33,3 +33,12 @@ public extension String {
     var cgfloat: CGFloat { return CGFloat(Double(self)!) }
 
 }
+
+extension Optional where Wrapped == CGFloat {
+    var orZero: CGFloat {
+        switch self {
+            case .none:return 0
+            case .some(let wrapped): return wrapped
+        }
+    }
+}

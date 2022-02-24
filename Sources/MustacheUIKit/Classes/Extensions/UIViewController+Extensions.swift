@@ -1,4 +1,5 @@
 import UIKit
+import MustacheFoundation
 
 public extension UIViewController {
 
@@ -23,78 +24,31 @@ public extension UIViewController {
     - parameters:
         - title: String
         - message: String default = ""
-        - completion: (() -> Void)? action when user dismisses the alert
-        - cancellable: Bool adds a cancel button which makes sure the completion is not called, defaults to false
-
-    */
-    func alert(title: String,
-               message: String = "",
-               completion: (() -> Void)? = nil,
-               cancellable: Bool = false) {
-
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let OKAction = UIAlertAction(title: NSLocalizedString("button_ok", comment: ""), style: .default, handler: { [completion] _ in completion?() })
-        alertController.addAction(OKAction)
-        if cancellable {
-            let cancelAction = UIAlertAction(title: NSLocalizedString("button_cancel", comment: ""), style: .cancel)
-            alertController.addAction(cancelAction)
-        }
-        self.present(alertController, animated: true, completion: nil)
-    }
-
-    /**
-    Presents an alert
-
-    - parameters:
-        - title: String
-        - message: String default = ""
-        - completion: (() -> Void)? action when user dismisses the alert
-        - cancellable: Bool adds a cancel button which makes sure the completion is not called, defaults to false
-        - okButtonTitle: String defaults to NSLocalizedString("button_ok", comment: "")
-        - cancelButtonTitle: String defaults to NSLocalizedString("button_cancel", comment: "")
-
-    */
-    func alert(title: String,
-               message: String = "",
-               completion: (() -> Void)? = nil,
-               cancellable: Bool = false,
-               okButtonTitle: String = NSLocalizedString("button_ok", comment: ""),
-               cancelButtonTitle: String = NSLocalizedString("button_cancel", comment: "")) {
-
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let OKAction = UIAlertAction(title: okButtonTitle, style: .default, handler: { [completion] _ in completion?() })
-        alertController.addAction(OKAction)
-        if cancellable {
-            let cancelAction = UIAlertAction(title: cancelButtonTitle, style: .cancel)
-            alertController.addAction(cancelAction)
-        }
-        self.present(alertController, animated: true, completion: nil)
-    }
-
-    /**
-    Presents an alert
-
-    - parameters:
-        - title: String
-        - message: String default = ""
         - okAction: (() -> Void)? action when user dismisses the alert
         - cancelAction: (() -> Void)? action when user cancels the alert
-        - okButtonTitle: String defaults to NSLocalizedString("button_ok", comment: "")
-        - cancelButtonTitle: String defaults to NSLocalizedString("button_cancel", comment: "")
+        - okButtonTitle: String
+        - cancelButtonTitle: String
 
     */
     func alert(title: String,
                message: String = "",
                okAction: (() -> Void)? = nil,
                cancelAction: (() -> Void)? = nil,
-               okButtonTitle: String = NSLocalizedString("button_ok", comment: ""),
-               cancelButtonTitle: String = NSLocalizedString("button_cancel", comment: "")) {
+               okButtonTitle: String? = nil,
+               cancelButtonTitle: String? = nil) {
 
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let OKAction = UIAlertAction(title: okButtonTitle, style: .default, handler: { [okAction] _ in okAction?() })
-        alertController.addAction(OKAction)
-        let cancelAction = UIAlertAction(title: cancelButtonTitle, style: .cancel, handler: { [cancelAction] _ in cancelAction?() })
-        alertController.addAction(cancelAction)
+
+        if let okAction = okAction {
+            let OKAction = UIAlertAction(title: okButtonTitle ?? "button_ok".localized, style: .default, handler: { [okAction] _ in okAction() })
+            alertController.addAction(OKAction)
+        }
+
+        if let cancelAction = cancelAction {
+            let cancelAction = UIAlertAction(title: cancelButtonTitle ?? "button_cancel".localized, style: .cancel, handler: { [cancelAction] _ in cancelAction() })
+            alertController.addAction(cancelAction)
+        }
+
         self.present(alertController, animated: true, completion: nil)
     }
 

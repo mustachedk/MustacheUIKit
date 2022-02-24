@@ -3,13 +3,14 @@ import PackageDescription
 
 let package = Package(
   name: "MustacheUIKit",
-  platforms: [.iOS(.v11), .macOS(.v10_12), .tvOS(.v11), .watchOS(.v3)],
+  platforms: [.iOS(.v11)],
   products: [
     .library(name: "MustacheUIKit", targets: ["MustacheUIKit"]),
   ],
   dependencies: [
    .package(url: "https://github.com/mustachedk/MustacheFoundation", .upToNextMajor(from: "2.0.0")),
    .package(url: "https://github.com/onevcat/Kingfisher.git", .upToNextMajor(from: "5.0.0")),
+   .package(url: "https://github.com/SnapKit/SnapKit.git", .upToNextMajor(from: "5.0.1"))
  ],
   targets: [
     .target(name: "MustacheUIKit", dependencies: ["MustacheFoundation", "Kingfisher"])

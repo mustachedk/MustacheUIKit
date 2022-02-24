@@ -48,6 +48,11 @@ open class Button: UIButton {
     fileprivate var disabledTitle: String?
     fileprivate var selectedTitle: String?
 
+	fileprivate var normalAttributedTitle: NSAttributedString?
+	fileprivate var highlightedAttributedTitle: NSAttributedString?
+	fileprivate var disabledAttributedTitle: NSAttributedString?
+	fileprivate var selectedAttributedTitle: NSAttributedString?
+
     fileprivate var normalImage: UIImage?
     fileprivate var highlightedImage: UIImage?
     fileprivate var disabledImage: UIImage?
@@ -66,6 +71,11 @@ open class Button: UIButton {
                 self.disabledTitle = self.title(for: .disabled)
                 self.selectedTitle = self.title(for: .selected)
 
+				self.normalAttributedTitle = self.attributedTitle(for: .normal)
+				self.highlightedAttributedTitle = self.attributedTitle(for: .highlighted)
+				self.disabledAttributedTitle = self.attributedTitle(for: .disabled)
+				self.selectedAttributedTitle = self.attributedTitle(for: .selected)
+
                 self.normalImage = self.image(for: .normal)
                 self.highlightedImage = self.image(for: .highlighted)
                 self.disabledImage = self.image(for: .disabled)
@@ -73,6 +83,7 @@ open class Button: UIButton {
 
                 super.setTitle("", for: UIControl.State())
                 super.setImage(nil, for: UIControl.State())
+				self.bringSubviewToFront(self.activityIndicator)
 
             } else {
 
@@ -80,6 +91,11 @@ open class Button: UIButton {
                 self.setTitle(self.highlightedTitle, for: .highlighted)
                 self.setTitle(self.disabledTitle, for: .disabled)
                 self.setTitle(self.selectedTitle, for: .selected)
+
+				self.setAttributedTitle(self.normalAttributedTitle, for: .normal)
+				self.setAttributedTitle(self.highlightedAttributedTitle, for: .highlighted)
+				self.setAttributedTitle(self.disabledAttributedTitle, for: .disabled)
+				self.setAttributedTitle(self.selectedAttributedTitle, for: .selected)
 
                 self.setImage(self.normalImage, for: .normal)
                 self.setImage(self.highlightedImage, for: .highlighted)
@@ -99,6 +115,17 @@ open class Button: UIButton {
             default:break
         }
     }
+
+	open override func setAttributedTitle(_ title: NSAttributedString?, for state: UIControl.State) {
+		super.setAttributedTitle(title, for: state)
+		switch state {
+			case .normal: self.normalAttributedTitle = title
+			case .highlighted: self.highlightedAttributedTitle = title
+			case .disabled: self.disabledAttributedTitle = title
+			case .selected: self.selectedAttributedTitle = title
+			default:break
+		}
+	}
 
     open override func setImage(_ image: UIImage?, for state: State) {
         super.setImage(image, for: state)

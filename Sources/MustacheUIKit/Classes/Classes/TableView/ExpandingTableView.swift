@@ -1,35 +1,83 @@
+//
+//  ExpandingTableView.swift
+//  loyaltyapp
+//
+//  Created by Simon Elhøj Steinmejer on 06/08/2020.
+//  Copyright © 2020 Dagrofa. All rights reserved.
+//
+
 import UIKit
 
+@IBDesignable
 open class ExpandingTableView: UITableView {
 
-    @IBOutlet open weak var heightConstraint: NSLayoutConstraint?
+	@IBInspectable var showEmptyHeaders: Bool = false
+	@IBInspectable var showEmptyFooters: Bool = false
+	@IBInspectable var adjustForContentInset: Bool = false
 
-    override open func reloadData() {
+	@IBOutlet open weak var heightConstraint: NSLayoutConstraint?
 
-        guard let heightConstraint = self.heightConstraint, heightConstraint.priority.rawValue < 750  else { return }
-        var height: CGFloat = 0.0
+	public override init(frame: CGRect, style: UITableView.Style) {
+		super.init(frame: frame, style: style)
+		self.configure()
+	}
 
-        for section in 0..<(self.dataSource?.numberOfSections?(in: self) ?? 1) {
+	public required init?(coder: NSCoder) {
+		super.init(coder: coder)
+		self.configure()
+	}
 
-            let headerHeight = (self.delegate?.tableView?(self, heightForHeaderInSection: section)) ?? self.sectionHeaderHeight
-            height += headerHeight
+	fileprivate func configure() {
+		if #available(iOS 15.0, *) {
+			self.sectionHeaderTopPadding = 0.0
+		}
+	}
 
-            for row in 0..<(self.dataSource?.tableView(self, numberOfRowsInSection: section) ?? 0) {
-                let rowHeight = (self.delegate?.tableView?(self, heightForRowAt: IndexPath(row: row, section: section))) ?? self.rowHeight
-                height += rowHeight
-            }
+	override open func reloadData() {
+		self.reloadHeight()
+		super.reloadData()
+	}
 
-        }
+	open func reloadHeight() {
 
-        heightConstraint.constant = height + self.contentInset.top + self.contentInset.bottom
+		guard let heightConstraint: NSLayoutConstraint = self.heightConstraint, heightConstraint.priority.rawValue < 750 else { return }
 
-        super.reloadData()
-        self.setNeedsLayout()
-    }
+		var height: CGFloat = 0.0
 
-    override open func layoutSubviews() {
-      super.layoutSubviews()
-      self.isScrollEnabled = (self.contentSize.height > self.frame.height)
-    }
+		for section: Int in 0..<(self.dataSource?.numberOfSections?(in: self) ?? 1) {
 
+			guard ((self.dataSource?.tableView(self, numberOfRowsInSection: section) ?? 0) > 0) || self.showEmptyHeaders || self.showEmptyFooters else { continue }
+
+			let sectionHeaderHeight: CGFloat = (self.delegate?.tableView?(self, heightForHeaderInSection: section)) ?? self.sectionHeaderHeight
+			height += sectionHeaderHeight
+
+			if (self.dataSource?.tableView(self, numberOfRowsInSection: section) ?? 0) == 0 && !self.showEmptyHeaders {
+				height -= (sectionHeaderHeight)
+			}
+
+			let sectionFooterHeight: CGFloat = (self.delegate?.tableView?(self, heightForFooterInSection: section)) ?? self.sectionFooterHeight
+			height += sectionFooterHeight
+
+			if (self.dataSource?.tableView(self, numberOfRowsInSection: section) ?? 0) == 0 && !self.showEmptyFooters {
+				height -= (sectionFooterHeight)
+			}
+
+			for row in 0..<(self.dataSource?.tableView(self, numberOfRowsInSection: section) ?? 0) {
+				let rowHeight: CGFloat = (self.delegate?.tableView?(self, heightForRowAt: IndexPath(row: row, section: section))) ?? self.rowHeight
+				height += rowHeight
+			}
+		}
+
+		if self.adjustForContentInset {
+			height += self.contentInset.top + self.contentInset.bottom
+		}
+
+		heightConstraint.constant = height
+		self.setNeedsLayout()
+	}
+
+	override open func layoutSubviews() {
+		super.layoutSubviews()
+		self.isScrollEnabled = (self.contentSize.height > self.frame.height)
+	}
 }

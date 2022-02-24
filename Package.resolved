@@ -6,7 +6,7 @@
         "repositoryURL": "https://github.com/onevcat/Kingfisher.git",
         "state": {
           "branch": null,
-          "revision": "44bfa76787a0f07e4d5ae3304e9d4f631fd519bd",
+          "revision": "55591508c3c429cc8f048c5c12dd1cd46e66b41b",
           "version": "5.13.0"
         }
       },
@@ -15,8 +15,17 @@
         "repositoryURL": "https://github.com/mustachedk/MustacheFoundation",
         "state": {
           "branch": null,
-          "revision": "cd877121983864b5190f1304c82dfef4b5a393e3",
-          "version": "1.0.3"
+          "revision": "274e338887f048b10671e6f0a2d94075cc33decc",
+          "version": "2.0.1"
+        }
+      },
+      {
+        "package": "SnapKit",
+        "repositoryURL": "https://github.com/SnapKit/SnapKit.git",
+        "state": {
+          "branch": null,
+          "revision": "d458564516e5676af9c70b4f4b2a9178294f1bc6",
+          "version": "5.0.1"
         }
       }
     ]
