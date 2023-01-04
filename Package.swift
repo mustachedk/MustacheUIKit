@@ -8,11 +8,11 @@ let package = Package(
     .library(name: "MustacheUIKit", targets: ["MustacheUIKit"]),
   ],
   dependencies: [
-   .package(url: "https://github.com/mustachedk/MustacheFoundation", .upToNextMajor(from: "2.0.0")),
+   .package(url: "https://github.com/mustachedk/MustacheFoundation", .upToNextMajor(from: "2.0.3")),
    .package(url: "https://github.com/onevcat/Kingfisher.git", .upToNextMajor(from: "5.0.0")),
    .package(url: "https://github.com/SnapKit/SnapKit.git", .upToNextMajor(from: "5.0.1"))
  ],
   targets: [
-    .target(name: "MustacheUIKit", dependencies: ["MustacheFoundation", "Kingfisher"])
+    .target(name: "MustacheUIKit", dependencies: ["MustacheFoundation", "Kingfisher", "SnapKit"])
   ]
 )
