@@ -2,7 +2,7 @@
 import Foundation
 import UIKit
 
-class SlidingTransition: NSObject, UIViewControllerAnimatedTransitioning {
+open class SlidingTransition: NSObject, UIViewControllerAnimatedTransitioning {
 
     let viewControllers: [UIViewController]?
     let transitionDuration: Double = 0.3
