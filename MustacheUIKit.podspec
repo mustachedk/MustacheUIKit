@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'MustacheUIKit'
-  s.version          = '4.0.5'
+  s.version          = '5.0.0'
   s.summary          = 'Helper methods used at Mustache when creating new apps.'
   s.homepage         = 'https://github.com/mustachedk/MustacheUIKit'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
