@@ -51,8 +51,8 @@ open class Button: UIButton {
             self.activityIndicator.tintColor = self.titleLabel?.textColor ?? self.tintColor
             self.isBusy ? self.activityIndicator.startAnimating() : self.activityIndicator.stopAnimating()
             
-            self.titleLabel?.isHidden = self.isBusy
-            self.imageView?.isHidden = self.isBusy
+            self.titleLabel?.layer.opacity = self.isBusy ? 0 : 1
+            self.imageView?.layer.opacity = self.isBusy ? 0 : 1
             
             self.bringSubviewToFront(self.activityIndicator)
             
