@@ -42,102 +42,23 @@ open class Button: UIButton {
         get { return self.activityIndicator.style }
         set { self.activityIndicator.style = newValue }
     }
-
-    fileprivate var normalTitle: String?
-    fileprivate var highlightedTitle: String?
-    fileprivate var disabledTitle: String?
-    fileprivate var selectedTitle: String?
-
-	fileprivate var normalAttributedTitle: NSAttributedString?
-	fileprivate var highlightedAttributedTitle: NSAttributedString?
-	fileprivate var disabledAttributedTitle: NSAttributedString?
-	fileprivate var selectedAttributedTitle: NSAttributedString?
-
-    fileprivate var normalImage: UIImage?
-    fileprivate var highlightedImage: UIImage?
-    fileprivate var disabledImage: UIImage?
-    fileprivate var selectedImage: UIImage?
-
+    
     /// Hides the text and shows an UIActivityIndicatorView spinning when true
     open var isBusy: Bool = false {
         didSet {
             self.isUserInteractionEnabled = !isBusy
+            
             self.activityIndicator.tintColor = self.titleLabel?.textColor ?? self.tintColor
             self.isBusy ? self.activityIndicator.startAnimating() : self.activityIndicator.stopAnimating()
-            if self.isBusy {
-
-                self.normalTitle = self.title(for: .normal)
-                self.highlightedTitle = self.title(for: .highlighted)
-                self.disabledTitle = self.title(for: .disabled)
-                self.selectedTitle = self.title(for: .selected)
-
-				self.normalAttributedTitle = self.attributedTitle(for: .normal)
-				self.highlightedAttributedTitle = self.attributedTitle(for: .highlighted)
-				self.disabledAttributedTitle = self.attributedTitle(for: .disabled)
-				self.selectedAttributedTitle = self.attributedTitle(for: .selected)
-
-                self.normalImage = self.image(for: .normal)
-                self.highlightedImage = self.image(for: .highlighted)
-                self.disabledImage = self.image(for: .disabled)
-                self.selectedImage = self.image(for: .selected)
-
-                super.setTitle("", for: UIControl.State())
-                super.setImage(nil, for: UIControl.State())
-				self.bringSubviewToFront(self.activityIndicator)
-
-            } else {
-
-                self.setTitle(self.normalTitle, for: .normal)
-                self.setTitle(self.highlightedTitle, for: .highlighted)
-                self.setTitle(self.disabledTitle, for: .disabled)
-                self.setTitle(self.selectedTitle, for: .selected)
-
-				self.setAttributedTitle(self.normalAttributedTitle, for: .normal)
-				self.setAttributedTitle(self.highlightedAttributedTitle, for: .highlighted)
-				self.setAttributedTitle(self.disabledAttributedTitle, for: .disabled)
-				self.setAttributedTitle(self.selectedAttributedTitle, for: .selected)
-
-                self.setImage(self.normalImage, for: .normal)
-                self.setImage(self.highlightedImage, for: .highlighted)
-                self.setImage(self.disabledImage, for: .disabled)
-                self.setImage(self.selectedImage, for: .selected)
-            }
+            
+            self.titleLabel?.isHidden = self.isBusy
+            self.imageView?.isHidden = self.isBusy
+            
+            self.bringSubviewToFront(self.activityIndicator)
+            
         }
     }
-
-    open override func setTitle(_ title: String?, for state: State) {
-        super.setTitle(title, for: state)
-        switch state {
-            case .normal: self.normalTitle = title
-            case .highlighted: self.highlightedTitle = title
-            case .disabled: self.disabledTitle = title
-            case .selected: self.selectedTitle = title
-            default:break
-        }
-    }
-
-	open override func setAttributedTitle(_ title: NSAttributedString?, for state: UIControl.State) {
-		super.setAttributedTitle(title, for: state)
-		switch state {
-			case .normal: self.normalAttributedTitle = title
-			case .highlighted: self.highlightedAttributedTitle = title
-			case .disabled: self.disabledAttributedTitle = title
-			case .selected: self.selectedAttributedTitle = title
-			default:break
-		}
-	}
-
-    open override func setImage(_ image: UIImage?, for state: State) {
-        super.setImage(image, for: state)
-        switch state {
-            case .normal: self.normalImage = image
-            case .highlighted: self.highlightedImage = image
-            case .disabled: self.disabledImage = image
-            case .selected: self.selectedImage = image
-            default:break
-        }
-    }
-
+    
     fileprivate func configureBusy() {
         self.activityIndicator.color = self.titleLabel?.textColor
     }
@@ -360,17 +281,4 @@ open class Button: UIButton {
         self.configureBusy()
     }
 
-    open override func awakeFromNib() {
-        super.awakeFromNib()
-
-        self.normalTitle = self.title(for: .normal)
-        self.highlightedTitle = self.title(for: .highlighted)
-        self.disabledTitle = self.title(for: .disabled)
-        self.selectedTitle = self.title(for: .selected)
-
-        self.normalImage = self.image(for: .normal)
-        self.highlightedImage = self.image(for: .highlighted)
-        self.disabledImage = self.image(for: .disabled)
-        self.selectedImage = self.image(for: .selected)
-    }
 }
